@@ -29,7 +29,7 @@ const Blognav = () => {
         className="main__nav"
       >
         <a className="main__nav--logo" href="#">
-          <img src="./asset/icons/logo.svg" alt="" />
+          <img src="/asset/icons/logo.svg" alt="" />
         </a>
 
         <motion.div

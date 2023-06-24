@@ -136,8 +136,8 @@ const index = () => {
                   nextLabel={"next"}
                   breakLabel={"..."}
                   pageCount={25}
-                  marginPagesDisplayed={2}
-                  pageRangeDisplayed={3}
+                  marginPagesDisplayed={1}
+                  pageRangeDisplayed={1}
                   containerClassName={"pagination justifycontent-start "}
                   pageClassName={"page-item"}
                   pageLinkClassName={"page-link"}

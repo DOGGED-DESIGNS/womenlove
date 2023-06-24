@@ -1,7 +1,36 @@
 import { useEffect } from "react";
 import Blognav from "../../comps/blognav";
+import Statichook from "@/hooks/statichook";
+export const getStaticPaths = async () => {
+  const { displayposts } = Statichook();
 
-const index = () => {
+  const data = await displayposts();
+
+  console.log(data);
+
+  const paths = data.map((da) => {
+    return {
+      params: { id: da.uuid.toString() },
+    };
+  });
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+
+export const getStaticProps = async (context) => {
+  const { singlePost } = Statichook();
+  const id = context.params.id;
+  const single = await singlePost(id);
+
+  return {
+    props: { single },
+  };
+};
+
+const index = ({ single }) => {
   useEffect(() => {
     $(document).ready(function () {
       $(".owl-carousel").owlCarousel({
@@ -39,30 +68,31 @@ const index = () => {
         <div className="singlelinks">
           <a href="">sanagos</a>
           <a href="">posts</a>
-          <a href="">fire_extinguisher</a>
-          <p>how to use fire extingisher properyly to aviod mistakes</p>
+          <a href=""> {single.id} </a>
+          <p> {single.title} </p>
         </div>
         <section className="single">
           <div className="single__grid">
             <div>
               <div className="post__recent--tag">
                 <a href="" className="post__recent--cat">
-                  Extinguisher
+                  {single.id}
                 </a>
                 <br />
-                <h4 className="single__h4">
-                  How to use fire extinguishers properly to aviod damage to the
-                  cylinder
-                </h4>
+                <h4 className="single__h4">{single.title}</h4>
                 <span className="single__span">
-                  <img src="./asset/icons/Profile.svg" alt="" /> By Sanagos .
-                  03/4/23
+                  <img src="/asset/icons/Profile.svg" alt="" />
+
+                  {`By ${single.author}`}
                 </span>
               </div>
             </div>
             <div>
               <div className="single__img">
-                <img src="./asset/img/presentation-8.png" alt="" />
+                <img
+                  src={`http://localhost/sanagosApi/${single.img1}`}
+                  alt=""
+                />
               </div>
             </div>
           </div>
@@ -100,96 +130,80 @@ const index = () => {
               {/* <!-- this is the description and image section --> */}
 
               <div className="my-2">
-                <h4 className="headtext">
-                  this is why you cant do what everyone tells you to
-                </h4>
-                <p className="p">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet, velit dicta. Sed soluta, vitae consequatur adipisci
-                  officiis expedita perspiciatis omnis provident, a non sint!
-                  Maiores, tenetur? Harum sequi saepe maxime molestias corporis,
-                  ab similique quos. Deleniti culpa quasi unde temporibus.
-                </p>
+                {single.des1 && (
+                  <div
+                    className="pb-3 pt-5 "
+                    dangerouslySetInnerHTML={{ __html: single.des1 }}
+                  ></div>
+                )}
 
-                <ul>
-                  <li>this is just a test</li>
-                  <li>this is just a test</li>
-                  <li>
-                    In this life i am so so grateful to start from where i am
-                  </li>
-                </ul>
-                <div className="imagepreset">
-                  <img src="./asset/img/presentation-8.png" alt="" />
-                </div>
+                {single.img2 && (
+                  <div className="imagepreset  ">
+                    <img
+                      src={`http://localhost/sanagosApi/${single.img2}`}
+                      alt=""
+                    />
+                  </div>
+                )}
+
+                {single.des2 && (
+                  <div
+                    className="pb-3 pt-5 "
+                    dangerouslySetInnerHTML={{ __html: single.des2 }}
+                  ></div>
+                )}
               </div>
               <div className="my-2">
-                <h4 className="headtext">
-                  this is why you cant do what everyone tells you to
-                </h4>
-                <p className="p">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet, velit dicta. Sed soluta, vitae consequatur adipisci
-                  officiis expedita perspiciatis omnis provident, a non sint!
-                  Maiores, tenetur? Harum sequi saepe maxime molestias corporis,
-                  ab similique quos. Deleniti culpa quasi unde temporibus.
-                </p>
+                {single.img3 && (
+                  <div className=" imagepreset">
+                    <img
+                      className=" "
+                      src={`http://localhost/sanagosApi/${single.img3}`}
+                      alt=""
+                    />
+                  </div>
+                )}
 
-                <ul>
-                  <li>this is just a test</li>
-                  <li>this is just a test</li>
-                  <li>
-                    In this life i am so so grateful to start from where i am
-                  </li>
-                </ul>
-                <div className="imagepreset">
-                  <img src="./asset/img/presentation-8.png" alt="" />
-                </div>
+                {single.des3 && (
+                  <div
+                    className="pb-3 pt-5 "
+                    dangerouslySetInnerHTML={{ __html: single.des3 }}
+                  ></div>
+                )}
               </div>
               <div className="my-2">
-                <h4 className="headtext">
-                  this is why you cant do what everyone tells you to
-                </h4>
-                <p className="p">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet, velit dicta. Sed soluta, vitae consequatur adipisci
-                  officiis expedita perspiciatis omnis provident, a non sint!
-                  Maiores, tenetur? Harum sequi saepe maxime molestias corporis,
-                  ab similique quos. Deleniti culpa quasi unde temporibus.
-                </p>
+                {single.img4 && (
+                  <div className="imagepreset">
+                    <img
+                      src={`http://localhost/sanagosApi/${single.img4}`}
+                      alt=""
+                    />
+                  </div>
+                )}
 
-                <ul>
-                  <li>this is just a test</li>
-                  <li>this is just a test</li>
-                  <li>
-                    In this life i am so so grateful to start from where i am
-                  </li>
-                </ul>
-                <div className="imagepreset">
-                  <img src="./asset/img/presentation-8.png" alt="" />
-                </div>
+                {single.des4 && (
+                  <div
+                    className=" mb-3 mt-5"
+                    dangerouslySetInnerHTML={{ __html: single.des4 }}
+                  ></div>
+                )}
               </div>
               <div className="my-2">
-                <h4 className="headtext">
-                  this is why you cant do what everyone tells you to
-                </h4>
-                <p className="p">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Eveniet, velit dicta. Sed soluta, vitae consequatur adipisci
-                  officiis expedita perspiciatis omnis provident, a non sint!
-                  Maiores, tenetur? Harum sequi saepe maxime molestias corporis,
-                  ab similique quos. Deleniti culpa quasi unde temporibus.
-                </p>
-
-                <ul>
-                  <li>this is just a test</li>
-                  <li>this is just a test</li>
-                  <li>
-                    In this life i am so so grateful to start from where i am
-                  </li>
-                </ul>
-                <div className="imagepreset">
-                  <img src="./asset/img/presentation-8.png" alt="" />
-                </div>
+                {single.img4 && (
+                  <div className="imagepreset">
+                    <img
+                      className=" mt-5 mb-3"
+                      src={`http://localhost/sanagosApi/${single.img4}`}
+                      alt=""
+                    />
+                  </div>
+                )}
+                {single.des5 && (
+                  <div
+                    className=" mb-3 mt-5"
+                    dangerouslySetInnerHTML={{ __html: single.des5 }}
+                  ></div>
+                )}
               </div>
 
               {/* <!-- comment section

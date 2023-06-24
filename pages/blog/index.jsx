@@ -1,11 +1,32 @@
 import Navbar from "../../comps/Navbar";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+// import htmlReactParser from "react-html-parser";
+// import htmlReactParser from "html-react-parser";
+import { renderToString } from "react-dom/server";
 import { motion, AnimatePresence } from "framer-motion";
 import Animatez from "@/Animate";
 import Editor from "../../comps/Editor";
 import Blognav from "../../comps/blognav";
-const About = () => {
+import Statichook from "@/hooks/statichook";
+
+export const getStaticProps = async () => {
+  const { displayposts, displayrecent, categoryEach, trending, tag, top } =
+    Statichook();
+
+  const post = await displayposts();
+  const recent = await displayrecent();
+  const trendpost = await trending();
+  const toppost = await top();
+  const tags = await tag();
+  const categoryeach = await categoryEach();
+
+  return {
+    props: { post, recent, trendpost, toppost, tags, categoryeach },
+  };
+};
+
+const Blog = ({ post, recent, trendpost, toppost, tags, categoryeach }) => {
   const [togglesearch, setTogglesearch] = useState(false);
 
   const {
@@ -20,8 +41,31 @@ const About = () => {
 
   const [navtoggle, setNavtoggle] = useState(false);
 
+  const [tagz, setTagz] = useState([]);
+
+  // const convertStringToHTML = (htmlString) => {
+  //   const parsedHTML = htmlReactParser(htmlString);
+  //   const htmlElement = <div>{parsedHTML}</div>;
+  //   const htmlOutput = renderToString(htmlElement);
+  //   return htmlOutput;
+  // };
+
   useEffect(() => {
+    // i am setting the tags
+
+    let arr = [];
+
+    tags.map((ta) => {
+      arr = [...ta.tag];
+      // console.log(ta);
+    });
+
+    setTagz(arr);
+
+    // end of setting the tags
+
     $(document).ready(function () {
+      console.log(post[0].color[1]);
       $(".owl-carousel").owlCarousel({
         items: 3,
         loop: true,
@@ -49,16 +93,15 @@ const About = () => {
     });
   }, []);
 
+  //  converting html to text
+  // const getText = (html) => {
+  //   const doc = new DOMParser().parseFromString(html, "text/html");
+  //   return doc.body.textContent;
+  // };
+
   return (
     <>
-      {/* <!-- start of search diallog --> */}
-
-      {/* <!-- end of search dialog --> */}
       <main className="admin">
-        {/* <!-- this is for tablets and mobile --> */}
-
-        {/* <!-- second nav --> */}
-
         <Blognav />
 
         {/* <!-- end of blog nav --> */}
@@ -75,41 +118,35 @@ const About = () => {
               initial="initial"
               whileInView="animate"
             >
-              <motion.div variants={genchild} className="post__post">
-                <div className="post__post--img">
-                  <img src="./asset/img/presentation-8.png" alt="" />
-                  <a href="#"> fire_extinguisher </a>
-                </div>
-                <a href="">this is the title of the post </a>
-                <span>
-                  By sanagos . <span>12/10/23</span>
-                </span>
-                <p className="post__post--p">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
-                  consectetur aut rem et ut molestias, nostrum laudantium fuga
-                  perferendis aliquid eum architecto fugit quod expedita enim.
-                  Accusantium odit quas adipisci?
-                </p>
-              </motion.div>
-              <motion.div variants={genchild} className="post__post">
-                <div className="post__post--img">
-                  <img src="./asset/img/presentation-8.png" alt="" />
-                  <a href="#"> fire_extinguisher </a>
-                </div>
-                <a href="">
-                  why you should never leave the <br />
-                  switch of any appliace on before going to bed
-                </a>
-                <span>
-                  By sanagos . <span>12/10/23</span>
-                </span>
-                <p className="post__post--p">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
-                  consectetur aut rem et ut molestias, nostrum laudantium fuga
-                  perferendis aliquid eum architecto fugit quod expedita enim.
-                  Accusantium odit quas adipisci?
-                </p>
-              </motion.div>
+              {post.length < 1 ? (
+                <h2> NO POST </h2>
+              ) : (
+                post.slice(0, 2).map((pa) => {
+                  return (
+                    <motion.div variants={genchild} className="post__post">
+                      <div className="post__post--img">
+                        <img
+                          src={`http://localhost/sanagosApi${pa.img1}`}
+                          alt=""
+                        />
+                        <a href="#"> {pa.id} </a>
+                      </div>
+                      <a href="">{pa.title} </a>
+                      {/* <div dangerouslySetInnerHTML={{ __html: pa.des2 }}></div> */}
+                      <span>
+                        {`By ${pa.author}`}
+                        {/* By sanagos . <span>12/10/23</span> */}
+                      </span>
+                      <div
+                        dangerouslySetInnerHTML={{ __html: pa.des1 }}
+                        className="post__post--p"
+                      >
+                        {/* {pa.des1} */}
+                      </div>
+                    </motion.div>
+                  );
+                })
+              )}
             </motion.div>
             <motion.div
               variants={gencont}
@@ -124,108 +161,47 @@ const About = () => {
                   <a href="#">All Post recent post</a>
                 </span>
               </motion.div>
-              <motion.div variants={genchild} className="post__recent">
-                <div>
-                  <div className="post__recent--img">
-                    <img src="./asset/img/presentation-8.png" alt="" />
-                  </div>
-                </div>
-                <div className="post__recent--tag">
-                  <a href="" className="post__recent--cat">
-                    Extinguisher
-                  </a>
-                  <br />
-                  <a className="post__recent--link" href="">
-                    How to use fire extinguishers properly to aviod damage to
-                    the cylinder
-                  </a>
-                  <br />
-                  <span className="post__recent--tagspan">
-                    By Sanagos . <span>03/4/23</span>
-                  </span>
-                </div>
-              </motion.div>
-              <motion.div variants={genchild} className="post__recent">
-                <div>
-                  <div className="post__recent--img">
-                    <img src="./asset/img/presentation-8.png" alt="" />
-                  </div>
-                </div>
-                <div className="post__recent--tag">
-                  <a href="" className="post__recent--cat">
-                    Extinguisher
-                  </a>
-                  <br />
+              {recent.length < 1 ? (
+                <h2>NO POST</h2>
+              ) : (
+                recent.map((re) => {
+                  return (
+                    <motion.div variants={genchild} className="post__recent">
+                      <div>
+                        <div className="post__recent--img">
+                          <img
+                            src={`http://localhost/sanagosApi${re.img1}`}
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <div className="post__recent--tag">
+                        {re.tag.map((ta, index) => {
+                          return (
+                            <a
+                              href=""
+                              style={{ background: re.color[index] }}
+                              className="post__recent--cat"
+                            >
+                              {ta}
+                            </a>
+                          );
+                        })}
 
-                  <a className="post__recent--link" href="">
-                    How to use fire extinguishers properly to aviod damage to
-                    the cylinder
-                  </a>
-                  <span className="post__recent--tagspan">
-                    By Sanagos . <span>03/4/23</span>
-                  </span>
-                </div>
-              </motion.div>
-              <motion.div variants={genchild} className="post__recent">
-                <div>
-                  <div className="post__recent--img">
-                    <img src="./asset/img/presentation-8.png" alt="" />
-                  </div>
-                </div>
-                <div className="post__recent--tag">
-                  <a href="" className="post__recent--cat">
-                    Extinguisher
-                  </a>
-                  <br />
-                  <a className="post__recent--link" href="">
-                    How to use fire extinguishers properly to aviod damage to
-                    the cylinder
-                  </a>
-                  <span className="post__recent--tagspan">
-                    By Sanagos . <span>03/4/23</span>
-                  </span>
-                </div>
-              </motion.div>
-              <motion.div variants={genchild} className="post__recent">
-                <div>
-                  <div className="post__recent--img">
-                    <img src="./asset/img/presentation-8.png" alt="" />
-                  </div>
-                </div>
-                <div className="post__recent--tag">
-                  <a href="" className="post__recent--cat">
-                    Extinguisher
-                  </a>
-                  <br />
-                  <a className="post__recent--link" href="">
-                    How to use fire extinguishers properly to aviod damage to
-                    the cylinder
-                  </a>
-                  <span className="post__recent--tagspan">
-                    By Sanagos . <span>03/4/23</span>
-                  </span>
-                </div>
-              </motion.div>
-              <motion.div variants={genchild} className="post__recent">
-                <div>
-                  <div className="post__recent--img">
-                    <img src="./asset/img/presentation-8.png" alt="" />
-                  </div>
-                </div>
-                <div className="post__recent--tag">
-                  <a href="" className="post__recent--cat">
-                    Extinguisher
-                  </a>
-                  <br />
-                  <a className="post__recent--link" href="">
-                    How to use fire extinguishers properly to aviod damage to
-                    the cylinder
-                  </a>
-                  <span className="post__recent--tagspan">
-                    By Sanagos . <span>03/4/23</span>
-                  </span>
-                </div>
-              </motion.div>
+                        <br />
+                        <a className="post__recent--link" href="">
+                          {re.title}
+                        </a>
+                        <br />
+                        <span className="post__recent--tagspan">
+                          {`By ${re.author}`}
+                          {/* By Sanagos . <span>03/4/23</span> */}
+                        </span>
+                      </div>
+                    </motion.div>
+                  );
+                })
+              )}
             </motion.div>
           </div>
         </section>
@@ -247,77 +223,91 @@ const About = () => {
             whileInView="animate"
             className="top__grid"
           >
-            <motion.div variants={genchild}>
-              <div className="top__grid--img1">
-                <img src="./asset/img/presentation-8.png" alt="" />
-                {/* <!-- grid one absolite --> */}
-                <div className="top__grid--move1">
-                  <a href="" className="post__recent--cat">
-                    Extinguisher
-                  </a>
-                  <br />
-                  <motion.a
-                    initial={{
-                      x: 0,
-                    }}
-                    whileHover={{
-                      x: "-30px",
-                    }}
-                    transition={{
-                      stiffness: 700,
-                    }}
-                    className="  post__recent--link top__grid--link"
-                    href=""
-                  >
-                    How to use fire extinguishers properly to aviod damage to
-                    the cylinder if this was a thing to deal with
-                  </motion.a>
-                  <span className="post__recent--tagspan">
-                    By Sanagos . <span>03/4/23</span>
-                  </span>
+            {toppost.length < 1 ? (
+              <h2>No Post</h2>
+            ) : (
+              <motion.div variants={genchild}>
+                <div className="top__grid--img1">
+                  <img src="./asset/img/presentation-8.png" alt="" />
+                  {/* <!-- grid one absolite --> */}
+                  <div className="top__grid--move1">
+                    <a href="" className="post__recent--cat">
+                      {top[0].id}
+                    </a>
+                    <br />
+                    <motion.a
+                      initial={{
+                        x: 0,
+                      }}
+                      whileHover={{
+                        x: "-30px",
+                      }}
+                      transition={{
+                        stiffness: 700,
+                      }}
+                      className="  post__recent--link top__grid--link"
+                      href=""
+                    >
+                      {top[0].title}
+                    </motion.a>
+                    <span className="post__recent--tagspan">
+                      {`By ${top[0].author}`}
+                      {/* By Sanagos . <span>03/4/23</span> */}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            )}
+
             <motion.div
               variants={gencont}
               initial="initial"
               whileInView="animate"
             >
-              <motion.div variants={genchild} className="top__grid--img2">
-                <img src="./asset/img/presentation-8.png" alt="" />
-                {/* <!-- grid one absolite --> */}
-                <div className="top__grid--move2">
-                  <a href="" className="post__recent--cat">
-                    Extinguisher
-                  </a>
-                  <br />
-                  <a className="post__recent--link top__grid--link2" href="">
-                    How to use fire extinguishers properly to aviod damage to
-                    the cylinder
-                  </a>
-                  <span className="post__recent--tagspan">
-                    By Sanagos . <span>03/4/23</span>
-                  </span>
-                </div>
-              </motion.div>
+              {toppost.length < 2 ? (
+                <h2>No Post</h2>
+              ) : (
+                <motion.div variants={genchild} className="top__grid--img2">
+                  <img src="./asset/img/presentation-8.png" alt="" />
+                  {/* <!-- grid one absolite --> */}
+                  <div className="top__grid--move2">
+                    <a href="" className="post__recent--cat">
+                      {toppost[1].id}
+                    </a>
+                    <br />
+                    <a className="post__recent--link top__grid--link2" href="">
+                      {toppost[1].title}
+                    </a>
+                    <span className="post__recent--tagspan">
+                      {`By ${toppost[1].author}`}
+                      {/* By Sanagos . <span>03/4/23</span> */}
+                    </span>
+                  </div>
+                </motion.div>
+              )}
+              {toppost.length < 3 ? (
+                <h2>No Post</h2>
+              ) : (
+                <motion.div variants={genchild} className="top__grid--img2">
+                  <img src="./asset/img/presentation-8.png" alt="" />
+                  {/* <!-- grid one absolite --> */}
+                  <div className="top__grid--move2">
+                    <a href="" className="post__recent--cat">
+                      {toppost[2].id}
+                    </a>
+                    <br />
+                    <a className="post__recent--link top__grid--link2" href="">
+                      {top[2].title}
+                    </a>
+                    <span className="post__recent--tagspan">
+                      {`By ${toppost[2].author}`}
+                      {/* By Sanagos . <span>03/4/23</span> */}
+                    </span>
+                  </div>
+                </motion.div>
+              )}
+
               {/* <!-- this is the second grid2 --> */}
-              <motion.div variants={genchild} className="top__grid--img2">
-                <img src="./asset/img/presentation-8.png" alt="" />
-                {/* <!-- grid one absolite --> */}
-                <div className="top__grid--move2">
-                  <a href="" className="post__recent--cat">
-                    Extinguisher
-                  </a>
-                  <br />
-                  <a className="post__recent--link top__grid--link2" href="">
-                    How to use fire extinguishers properly to aviod damage to
-                    the cylinder
-                  </a>
-                  <span className="post__recent--tagspan">
-                    By Sanagos . <span>03/4/23</span>
-                  </span>
-                </div>
-              </motion.div>
             </motion.div>
           </motion.div>
         </section>
@@ -338,94 +328,72 @@ const About = () => {
               initial="initial"
               whileInView="animate"
             >
-              <motion.div variants={genchild} className="post__recent">
-                <div>
-                  <div className="post__recent--img">
-                    <img src="./asset/img/presentation-8.png" alt="" />
-                  </div>
-                </div>
-                <div className="post__recent--tag">
-                  <a href="" className="post__recent--cat">
-                    Extinguisher
-                  </a>
-                  <br />
-                  <a className="post__recent--link" href="">
-                    How to use fire extinguishers properly to aviod damage to
-                    the cylinder
-                  </a>
-                  <span className="post__recent--tagspan">
-                    By Sanagos . <span>03/4/23</span>
-                  </span>
-                </div>
-              </motion.div>
+              {trendpost.length < 1 ? (
+                <h2>NO POSTS</h2>
+              ) : (
+                trendpost.slice(0, 2).map((trend) => {
+                  return (
+                    <motion.div variants={genchild} className="post__recent">
+                      <div>
+                        <div className="post__recent--img">
+                          <img src="./asset/img/presentation-8.png" alt="" />
+                        </div>
+                      </div>
+                      <div className="post__recent--tag">
+                        <a href="" className="post__recent--cat">
+                          Extinguisher
+                        </a>
+                        <br />
+                        <a className="post__recent--link" href="">
+                          How to use fire extinguishers properly to aviod damage
+                          to the cylinder
+                        </a>
+                        <span className="post__recent--tagspan">
+                          By Sanagos . <span>03/4/23</span>
+                        </span>
+                      </div>
+                    </motion.div>
+                  );
+                })
+              )}
+
               {/* <!-- this is the second grid2 --> */}
-              <motion.div variants={genchild} className="post__recent">
-                <div>
-                  <div className="post__recent--img">
-                    <img src="./asset/img/presentation-8.png" alt="" />
-                  </div>
-                </div>
-                <div className="post__recent--tag">
-                  <a href="" className="post__recent--cat">
-                    Extinguisher
-                  </a>
-                  <br />
-                  <a className="post__recent--link" href="">
-                    How to use fire extinguishers properly to aviod damage to
-                    the cylinder
-                  </a>
-                  <span className="post__recent--tagspan">
-                    By Sanagos . <span>03/4/23</span>
-                  </span>
-                </div>
-              </motion.div>
             </motion.div>
             <motion.div
               variants={gencont}
               initial="initial"
               whileInView="animate"
             >
-              <motion.div variants={genchild} className="post__recent">
-                <div>
-                  <div className="post__recent--img">
-                    <img src="./asset/img/presentation-8.png" alt="" />
-                  </div>
-                </div>
-                <div className="post__recent--tag">
-                  <a href="" className="post__recent--cat">
-                    Extinguisher
-                  </a>
-                  <br />
-                  <a className="post__recent--link" href="">
-                    How to use fire extinguishers properly to aviod damage to
-                    the cylinder
-                  </a>
-                  <span className="post__recent--tagspan">
-                    By Sanagos . <span>03/4/23</span>
-                  </span>
-                </div>
-              </motion.div>
+              {trendpost.length < 3 ? (
+                <h2>NO POST</h2>
+              ) : (
+                trendpost.slice(2, 4).map((trend) => {
+                  return (
+                    <motion.div variants={genchild} className="post__recent">
+                      <div>
+                        <div className="post__recent--img">
+                          <img src="./asset/img/presentation-8.png" alt="" />
+                        </div>
+                      </div>
+                      <div className="post__recent--tag">
+                        <a href="" className="post__recent--cat">
+                          Extinguisher
+                        </a>
+                        <br />
+                        <a className="post__recent--link" href="">
+                          How to use fire extinguishers properly to aviod damage
+                          to the cylinder
+                        </a>
+                        <span className="post__recent--tagspan">
+                          By Sanagos . <span>03/4/23</span>
+                        </span>
+                      </div>
+                    </motion.div>
+                  );
+                })
+              )}
+
               {/* <!-- this is the second grid2 --> */}
-              <motion.div variants={genchild} className="post__recent">
-                <div>
-                  <div className="post__recent--img">
-                    <img src="./asset/img/presentation-8.png" alt="" />
-                  </div>
-                </div>
-                <div className="post__recent--tag">
-                  <a href="" className="post__recent--cat">
-                    Extinguisher
-                  </a>
-                  <br />
-                  <a className="post__recent--link" href="">
-                    How to use fire extinguishers properly to aviod damage to
-                    the cylinder
-                  </a>
-                  <span className="post__recent--tagspan">
-                    By Sanagos . <span>03/4/23</span>
-                  </span>
-                </div>
-              </motion.div>
             </motion.div>
           </div>
         </section>
@@ -440,96 +408,64 @@ const About = () => {
               <a href="" className="advert__img">
                 <img src="./asset/img/ard2.png" alt="" />
               </a>
-              <motion.div
-                variants={genchild}
-                className="post__recent post__recent--modify"
-              >
-                <div>
-                  <div className="post__recent--img post__recent--img--modify">
-                    <img src="./asset/img/presentation-8.png" alt="" />
-                  </div>
-                </div>
-                <div className="post__recent--tag">
-                  <a href="" className="post__recent--cat">
-                    Extinguisher
-                  </a>
-                  <br />
-                  <a
-                    className="post__recent--link post__recent--link--modify"
-                    href=""
-                  >
-                    How to use fire extinguishers properly to aviod damage to
-                    the cylinder
-                  </a>
-                  <span className="post__recent--tagspan">
-                    By Sanagos . <span>03/4/23</span>
-                  </span>
-                  <p className="post__post--p">
+
+              {post.length < 1 ? (
+                <h2>NO POST AVAILABLE</h2>
+              ) : (
+                post.slice(0, 3).map((ma) => {
+                  return (
+                    <motion.div
+                      variants={genchild}
+                      className="post__recent post__recent--modify"
+                    >
+                      <div>
+                        <div className="post__recent--img post__recent--img--modify">
+                          <img
+                            src={`http://localhost/sanagosApi${ma.img1}`}
+                            alt=""
+                          />
+                        </div>
+                      </div>
+                      <div className="post__recent--tag">
+                        {ma.tag.map((ta, index) => {
+                          return (
+                            <a
+                              href=""
+                              style={{ background: ma.color[index] }}
+                              className="post__recent--cat"
+                            >
+                              {ta}
+                            </a>
+                          );
+                        })}
+
+                        <br />
+                        <a
+                          className="post__recent--link post__recent--link--modify"
+                          href=""
+                        >
+                          {ma.title}
+                        </a>
+                        <span className="post__recent--tagspan">
+                          {`By ${ma.author}`}
+
+                          {/* By Sanagos . <span>03/4/23</span> */}
+                        </span>
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: `${ma.des1.substring(0, 200)}...`,
+                          }}
+                          className="post__post--p"
+                        ></div>
+                        {/* <p className="post__post--p">
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                     Corrupti, possimus neque quos ad hic maiores. Ratione porro,
-                  </p>
-                </div>
-              </motion.div>
-              <motion.div
-                variants={genchild}
-                className="post__recent post__recent--modify"
-              >
-                <div>
-                  <div className="post__recent--img post__recent--img--modify">
-                    <img src="./asset/img/presentation-8.png" alt="" />
-                  </div>
-                </div>
-                <div className="post__recent--tag">
-                  <a href="" className="post__recent--cat">
-                    Extinguisher
-                  </a>
-                  <br />
-                  <a
-                    className="post__recent--link post__recent--link--modify"
-                    href=""
-                  >
-                    How to use fire extinguishers properly to aviod damage to
-                    the cylinder
-                  </a>
-                  <span className="post__recent--tagspan">
-                    By Sanagos . <span>03/4/23</span>
-                  </span>
-                  <p className="post__post--p">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Corrupti, possimus neque quos ad hic maiores. Ratione porro,
-                  </p>
-                </div>
-              </motion.div>
-              <motion.div
-                variants={genchild}
-                className="post__recent post__recent--modify"
-              >
-                <div>
-                  <div className="post__recent--img post__recent--img--modify">
-                    <img src="./asset/img/presentation-8.png" alt="" />
-                  </div>
-                </div>
-                <div className="post__recent--tag">
-                  <a href="" className="post__recent--cat">
-                    Extinguisher
-                  </a>
-                  <br />
-                  <a
-                    className="post__recent--link post__recent--link--modify"
-                    href=""
-                  >
-                    How to use fire extinguishers properly to aviod damage to
-                    the cylinder
-                  </a>
-                  <span className="post__recent--tagspan">
-                    By Sanagos . <span>03/4/23</span>
-                  </span>
-                  <p className="post__post--p">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                    Corrupti, possimus neque quos ad hic maiores. Ratione porro,
-                  </p>
-                </div>
-              </motion.div>
+                  </p> */}
+                      </div>
+                    </motion.div>
+                  );
+                })
+              )}
             </motion.div>
             <div>
               <div>
@@ -545,24 +481,24 @@ const About = () => {
                 </div>
                 <div className="owl-cover">
                   <div className="owl-carousel owl-theme">
-                    <div className="item">
-                      <div className="advert__cat">
-                        <h5 className="advert__cat--h5">27</h5>
-                        <p className="advert__cat--p">fire extinguisher</p>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div className="advert__cat">
-                        <h5 className="advert__cat--h5">27</h5>
-                        <p className="advert__cat--p">fire extinguisher</p>
-                      </div>
-                    </div>
-                    <div className="item">
-                      <div className="advert__cat">
-                        <h5 className="advert__cat--h5">27</h5>
-                        <p className="advert__cat--p">fire extinguisher</p>
-                      </div>
-                    </div>
+                    {categoryeach.length < 1 ? (
+                      <h4>No Post Availabe</h4>
+                    ) : (
+                      categoryeach.map((cat) => {
+                        return (
+                          <div className="item">
+                            <div
+                              className="advert__cat"
+                              style={{ background: cat.color }}
+                            >
+                              <h5 className="advert__cat--h5"> {cat.total} </h5>
+                              <p className="advert__cat--p"> {cat.id} </p>
+                            </div>
+                          </div>
+                        );
+                      })
+                    )}
+
                     {/* <!-- Add more items as needed --> */}
                   </div>
 
@@ -585,27 +521,17 @@ const About = () => {
                 </div>
 
                 <div className="advert__tags">
-                  <a a href="">
-                    fire extinguishers
-                  </a>
-                  <a a href="">
-                    Safety
-                  </a>
-                  <a a href="">
-                    Helment
-                  </a>
-                  <a a href="">
-                    Safety boots
-                  </a>
-                  <a a href="">
-                    Reflextive Vest
-                  </a>
-                  <a a href="">
-                    News
-                  </a>
-                  <a a href="">
-                    Kitchen Fire
-                  </a>
+                  {tagz.length < 1 ? (
+                    <h4>No Post</h4>
+                  ) : (
+                    tagz.map((ta) => {
+                      return (
+                        <a a href="">
+                          {ta}
+                        </a>
+                      );
+                    })
+                  )}
                 </div>
               </div>
 
@@ -672,4 +598,4 @@ const About = () => {
   );
 };
 
-export default About;
+export default Blog;

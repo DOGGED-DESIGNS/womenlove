@@ -12211,9 +12211,31 @@ html {
   padding-top: 100px;
 }
 .addpost__form {
-  width: 920px;
+  width: auto;
   padding: 7px;
+  padding-bottom: 60px;
   margin: auto;
+}
+.addpost__form > button {
+  padding: 10px 15px;
+  background: #2f4858;
+  border: rgba(0, 0, 0, 0);
+  font-weight: 600;
+  font-family: "Roboto", sans-serif;
+  font-size: 15px;
+  margin-top: 30px;
+  display: block;
+  color: #f3eed9;
+  text-transform: capitalize;
+  margin-top: 50px;
+  border-radius: 10px;
+  width: 50%;
+  margin: auto;
+}
+@media (max-width: 500px) {
+  .addpost__form > button {
+    font-size: 15px;
+  }
 }
 .addpost__select {
   display: -webkit-box;
@@ -12223,6 +12245,9 @@ html {
   -ms-flex-pack: justify;
   justify-content: space-between;
   margin-bottom: 20px;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 .addpost__select > div > select {
   width: 190px;
@@ -12237,7 +12262,7 @@ html {
     linear-gradient(45deg, #e8e8e8, #e8e8e8);
 }
 .addpost__select > div > input {
-  width: 190px;
+  max-width: 190px;
 }
 .addpost__title {
   width: 100%;
