@@ -232,7 +232,7 @@ const Blog = ({ post, recent, trendpost, toppost, tags, categoryeach }) => {
                   {/* <!-- grid one absolite --> */}
                   <div className="top__grid--move1">
                     <a href="" className="post__recent--cat">
-                      {top[0].id}
+                      {toppost[0].id}
                     </a>
                     <br />
                     <motion.a
@@ -248,10 +248,10 @@ const Blog = ({ post, recent, trendpost, toppost, tags, categoryeach }) => {
                       className="  post__recent--link top__grid--link"
                       href=""
                     >
-                      {top[0].title}
+                      {toppost[0].title}
                     </motion.a>
                     <span className="post__recent--tagspan">
-                      {`By ${top[0].author}`}
+                      {`By ${toppost[0].author}`}
                       {/* By Sanagos . <span>03/4/23</span> */}
                     </span>
                   </div>
