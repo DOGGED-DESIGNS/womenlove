@@ -14,7 +14,11 @@ function MyApp({ Component, pageProps }) {
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="love,relationship" />
+        <meta
+          name="description"
+          content="women love and relationship is a blog that guides you on your journey. we provide young adult women and older women information they need to achieve a long and healthy relationship"
+        />
+        <meta name="keywords" content="love, relationship happiness" />
         <link rel="stylesheet" href="/final/fontawesome.min.css" />
         <link rel="stylesheet" href="/swiper/owl.carousel.min.css" />
         <link rel="stylesheet" href="/swiper/owl.theme.default.css" />
