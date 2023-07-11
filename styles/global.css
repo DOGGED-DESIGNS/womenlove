@@ -10576,21 +10576,21 @@ html {
 }
 @media (max-width: 780px) {
   .navmobile {
-    height: 300px;
+    height: 100vh;
     overflow: auto;
     display: block;
-    width: 390px;
+    width: 290px;
     background: #036068;
-    padding-bottom: 15px;
+    padding-bottom: 25px;
     position: fixed !important;
     top: 10px;
-    right: 15px;
+    right: 5px;
     z-index: 100;
   }
   .navmobile__search {
     margin-top: 10px;
     padding-left: 10px;
-    width: calc(100% - 100px) !important;
+    width: 100%;
     overflow: auto;
     padding-right: 10px;
     padding-top: 10px;
@@ -13440,7 +13440,6 @@ html {
   color: #ee2434;
 }
 .blogfooter {
-  border: 1px solid orange;
   margin-top: 50px;
   background: #7c6d6c;
   padding-top: 30px;
