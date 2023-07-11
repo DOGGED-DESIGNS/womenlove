@@ -10574,54 +10574,6 @@ html {
 .navmobile {
   display: none;
 }
-.navmobile__search {
-  margin-top: 10px;
-  padding-left: 10px;
-  width: calc(100% - 100px);
-  overflow: auto;
-  padding-right: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background: #fff6f4;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  margin-bottom: 10px;
-  top: 0px;
-  position: fixed;
-}
-.navmobile__search > a > i {
-  display: block;
-  font-size: 18px;
-  color: #036068;
-  cursor: pointer;
-}
-.navmobile__search > div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-.navmobile__search > div > input {
-  outline: none;
-  width: 203px !important;
-  border: rgba(0, 0, 0, 0) !important;
-  background: rgba(0, 0, 0, 0) !important;
-  border-bottom: 2px solid #000 !important;
-}
-.navmobile__search > div > input:focus {
-  outline: none;
-  border: rgba(0, 0, 0, 0) !important;
-  border-bottom: 2px solid #9d9d9d !important;
-}
 @media (max-width: 780px) {
   .navmobile {
     height: 300px;
@@ -10630,10 +10582,58 @@ html {
     width: 390px;
     background: #036068;
     padding-bottom: 15px;
-    position: fixed;
+    position: fixed !important;
     top: 10px;
     right: 15px;
     z-index: 100;
+  }
+  .navmobile__search {
+    margin-top: 10px;
+    padding-left: 10px;
+    width: calc(100% - 100px) !important;
+    overflow: auto;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: #fff6f4;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    margin-bottom: 10px;
+    top: 0px;
+    position: fixed !important;
+  }
+  .navmobile__search > a > i {
+    display: block;
+    font-size: 18px;
+    color: #036068;
+    cursor: pointer;
+  }
+  .navmobile__search > div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+  }
+  .navmobile__search > div > input {
+    outline: none;
+    width: 203px !important;
+    border: rgba(0, 0, 0, 0) !important;
+    background: rgba(0, 0, 0, 0) !important;
+    border-bottom: 2px solid #000 !important;
+  }
+  .navmobile__search > div > input:focus {
+    outline: none;
+    border: rgba(0, 0, 0, 0) !important;
+    border-bottom: 2px solid #9d9d9d !important;
   }
   .navmobile__question {
     display: -webkit-box;

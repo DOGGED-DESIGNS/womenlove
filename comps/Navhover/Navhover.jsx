@@ -1,56 +1,70 @@
-import React from "react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navhover = () => {
+  const [hover, setHover] = useState(false);
+
   return (
     <>
-      <div>
-        <a href="#" className="">
-          {" "}
-          home{" "}
-        </a>
-      </div>
-      <div>
-        <a href="#" className="">
-          {" "}
-          Relationships{" "}
-        </a>
-      </div>
-      <div>
-        <a href="#" className="">
-          {" "}
-          Women{" "}
-        </a>
-      </div>
-      <div>
-        <a href="#" className="">
+      <motion.div
+        onHoverStart={() => {
+          setHover(true);
+        }}
+        onHoverEnd={() => {
+          setHover(false);
+        }}
+        className=""
+      >
+        <motion.a
+          onHoverStart={() => {
+            setHover(true);
+          }}
+          onHoverEnd={() => {
+            setHover(false);
+          }}
+          href="#"
+          className="border"
+        >
           {" "}
           Dating{" "}
-        </a>
-        <div className="navhover">
-          <a href="" className="text-decoration-none">
-            <p>Dating and how to deal with cheating</p>
-          </a>
-          <a href="" className="text-decoration-none">
-            <p>Relationship is what i want</p>
-          </a>
-          <a href="" className="text-decoration-none">
-            <p>Feel free to open up to your partners</p>
-          </a>
-        </div>
+        </motion.a>
+
+        <AnimatePresence>
+          {hover && (
+            <motion.div
+              initial={{
+                y: "-20px",
+                opacity: 0,
+                translateX: "-50%",
+              }}
+              animate={{
+                y: 0,
+                opacity: 1,
+              }}
+              exit={{
+                y: "-20px",
+                opacity: 0,
+                transition: {
+                  delay: 0.5,
+                },
+              }}
+              className="navhover"
+            >
+              <a href="" className="text-decoration-none">
+                <p>Dating and how to deal with cheating</p>
+              </a>
+              <a href="" className="text-decoration-none">
+                <p>Relationship is what i want</p>
+              </a>
+              <a href="" className="text-decoration-none">
+                <p>Feel free to open up to your partners</p>
+              </a>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         {/* <!-- <div className="point" /> --> */}
-      </div>
-
-      <div>
-        <a href="" className="admin__nav--modify--link text-decoration-none">
-          <i className="text-black mr-1 fa-1x fas fa-search"></i>
-
-          {/* <!-- <img
-               className="admin__nav--quoteimg"
-               src="./asset/icons/adminicon/quotedark.svg"
-               alt=""
-             /> --> */}
-        </a>
-      </div>
+      </motion.div>
     </>
   );
 };

@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-      <footer className="footer">
+      <footer className="footer main">
         <div className="footer__grid">
           <div className="footer__grid--first">
             <div>

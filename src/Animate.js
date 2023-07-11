@@ -10,10 +10,12 @@ const Animatez = () => {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring",
+        ease: "easeInOut",
+        type: "tween",
         when: "beforeChildren",
-        staggerChildren: 0.2,
-        delay: 0.5,
+        staggerChildren: 0.3,
+        delay: 0.3,
+
         stiffness: 200,
       },
     },
@@ -33,6 +35,7 @@ const Animatez = () => {
       y: 0,
       transition: {
         type: "spring",
+        ease: "easeInOut",
         stiffness: 200,
       },
     },
