@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }) {
         <link rel="stylesheet" href="/swiper/owl.theme.default.css" />
         <link rel="stylesheet" href="/swiper/css/swiper-bundle.min.css" />
         {/* <link rel="stylesheet" href="./final/index.min.css" /> */}
-        <title>WomenLoveAndRelationships😃</title>
+        <title>WomenLoveAndRelationships</title>
 
         <script src="/jquery.3.4.1.js?cd=123"></script>
         <script src="/swiper/owl.carousel.min.js"></script>

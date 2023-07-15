@@ -132,12 +132,12 @@ const category = ({ getcategory }) => {
                 </div>
               </div>
               <div>
-                <div className="table__head--phone">
+                <div className="table__head--des ">
                   <h6>img1</h6>
                 </div>
               </div>
               <div>
-                <div className="table__head--des">
+                <div className="table__head--des ">
                   <h6>img2</h6>
                 </div>
               </div>

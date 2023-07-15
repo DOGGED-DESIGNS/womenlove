@@ -10,7 +10,7 @@ const Postbody = ({ time, title, id, img, uuid }) => {
     <>
       <div className="table__body">
         <div className="">
-          <div className="table__head--phone">
+          <div className="table__head--name">
             <p> {id} </p>
           </div>
         </div>
@@ -26,8 +26,8 @@ const Postbody = ({ time, title, id, img, uuid }) => {
             </div>
           </div>
         </div>
-        <div>
-          <div className="table__head--indus">
+        <div className=" ">
+          <div className="  table__head--name">
             <p> {time} </p>
           </div>
         </div>

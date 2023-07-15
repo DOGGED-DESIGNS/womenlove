@@ -40,14 +40,14 @@ const Catbody = ({ id, title, subtitle1, subtitle2, des, img1, img2 }) => {
             </div>
           </div>
         </div>
-        <div>
-          <div class="table__head--des d-flex align-items-center">
+        <div className="">
+          <div class="  table__head--des d-flex align-items-center">
             <div class="desimg">
               <img src={`https://jeffmatthewpatten.com/api2${img2}`} alt="" />
             </div>
           </div>
         </div>
-        <div className="">
+        <div className=" ">
           <div className="table__head--act">
             <AnimatePresence>
               {toggle && (

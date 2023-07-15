@@ -10,7 +10,7 @@ const Quesbody = ({ question, id, img, uuid }) => {
     <>
       <div className="table__body">
         <div className="">
-          <div className="table__head--phone">
+          <div className="table__head--name">
             <p> {id} </p>
           </div>
         </div>

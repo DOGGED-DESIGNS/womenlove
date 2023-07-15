@@ -92,7 +92,7 @@ const Nav = ({ post, cat }) => {
       </nav>
 
       <nav className="main__nav2">
-        <a className="main__nav2--logo" href="#">
+        <a className="main__nav2--logo" href="/">
           <img src="/asset/icons/testlogo.svg" alt="" />
         </a>
 

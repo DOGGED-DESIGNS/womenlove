@@ -77,7 +77,7 @@ const posts = ({ getpost }) => {
                 </div>
               </div>
               <div>
-                <div className="table__head--indus">
+                <div className="table__head--name">
                   <h6>Time</h6>
                 </div>
               </div>
