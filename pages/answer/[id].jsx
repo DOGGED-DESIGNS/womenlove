@@ -63,54 +63,30 @@ const index = ({ tworandom, category, singlequest, post }) => {
             dangerouslySetInnerHTML={{ __html: singlequest.des }}
           ></div>
         </section>
-
-        <section className=" main more">
-          <h1 className="question__h1">Answers should not be hard to find</h1>
-          <p className="text-white question__p">we are here to help.</p>
-
-          <motion.div
-            variants={gencont}
-            initial={"initial"}
-            whileInView={"animate"}
-            className="question__grid"
-          >
-            {tworandom.length < 1 ? (
-              <h2> loading.. </h2>
-            ) : (
-              tworandom.map((rand) => {
-                return (
-                  <motion.div variants={genchild}>
-                    <Question {...rand} />
-                  </motion.div>
-                );
-              })
-            )}
-          </motion.div>
-        </section>
-        <section className=" main more">
-          <h1 className="question__h1">Answers should not be hard to find</h1>
-          <p className="text-white question__p">we are here to help.</p>
-
-          <motion.div
-            variants={gencont}
-            initial={"initial"}
-            whileInView={"animate"}
-            className="question__grid"
-          >
-            {tworandom.length < 1 ? (
-              <h2> loading.. </h2>
-            ) : (
-              tworandom.map((rand) => {
-                return (
-                  <motion.div variants={genchild}>
-                    <Question {...rand} />
-                  </motion.div>
-                );
-              })
-            )}
-          </motion.div>
-        </section>
       </main>
+      <section className=" main more">
+        <h1 className="question__h1">Answers should not be hard to find</h1>
+        <p className="text-white question__p">we are here to help.</p>
+
+        <motion.div
+          variants={gencont}
+          initial={"initial"}
+          whileInView={"animate"}
+          className="question__grid"
+        >
+          {tworandom.length < 1 ? (
+            <h2> loading.. </h2>
+          ) : (
+            tworandom.map((rand) => {
+              return (
+                <motion.div variants={genchild}>
+                  <Question {...rand} />
+                </motion.div>
+              );
+            })
+          )}
+        </motion.div>
+      </section>
       <Footer />
     </>
   );
