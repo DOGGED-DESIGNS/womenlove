@@ -3,7 +3,7 @@ import Navhover from "../Navhover/Navhover";
 import { motion, AnimatePresence } from "framer-motion";
 import Animatez from "@/Animate";
 import Smallhover from "../Smallhover/Smallhover";
-const Nav = () => {
+const Nav = ({ post, cat }) => {
   const { menu, menuchild } = Animatez();
   const [toggle, setToggle] = useState(false);
   const [search, setSearch] = useState(false);
@@ -54,16 +54,18 @@ const Nav = () => {
       </AnimatePresence>
 
       <nav className="admin__nav admin__nav--modify">
-        <a className="admin__nav--logo" href="#">
-          <img src="./asset/icons/testlogo.svg" alt="" />
+        <a className="admin__nav--logo" href="/">
+          <img src="/asset/icons/testlogo.svg" alt="" />
         </a>
 
         <div className="womenlink">
-          <Navhover />
-          <Navhover />
-          <Navhover />
-          <Navhover />
-          <Navhover />
+          {cat.length < 1 ? (
+            <h2 className=" text-center">loading..</h2>
+          ) : (
+            cat.slice(0, 4).map((ca) => {
+              return <Navhover id={ca.id} post={post} />;
+            })
+          )}
 
           <div>
             <a
@@ -91,7 +93,7 @@ const Nav = () => {
 
       <nav className="main__nav2">
         <a className="main__nav2--logo" href="#">
-          <img src="./asset/icons/testlogo.svg" alt="" />
+          <img src="/asset/icons/testlogo.svg" alt="" />
         </a>
 
         <motion.div
@@ -181,7 +183,7 @@ const Nav = () => {
                 </motion.div>
               )}
             </AnimatePresence>
-            <div className="  align-items-center d-flex mb-4 pr-4 py-2">
+            <div className="  align-items-center d-flex pr-4 py-2">
               <i
                 style={{
                   cursor: "pointer",
@@ -189,7 +191,7 @@ const Nav = () => {
                 onClick={() => {
                   setSearch(true);
                 }}
-                className="fas fa-search text-white mx-3  "
+                className="  fas fa-search text-white mx-3  "
               ></i>
               <i
                 onClick={() => {
@@ -202,10 +204,25 @@ const Nav = () => {
               ></i>
             </div>
 
-            <Smallhover />
-            <Smallhover />
-            <Smallhover />
-            <Smallhover />
+            {cat.length < 1 ? (
+              <h2 className=" text-center">loading..</h2>
+            ) : (
+              cat.slice(0, 4).map((ca) => {
+                return <Smallhover id={ca.id} post={post} />;
+              })
+            )}
+            <div className="navmobile__topic mt-5">
+              <a href="/about">
+                <div class="pl-2">
+                  <p>About Us</p>
+                </div>
+              </a>
+              <a href="/contact">
+                <div class="pl-2">
+                  <p>Contact Us</p>
+                </div>
+              </a>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

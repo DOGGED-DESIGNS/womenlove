@@ -1,7 +1,67 @@
 import React from "react";
 import Adminnav from "../../comps/Adminnav/Adminnav";
+import Combody from "../../comps/Combody/Combody";
 
-const comment = () => {
+import Statichook from "@/hooks/statichook";
+import { withSessionSsr, getSessionData } from "../api/withsession";
+import { Generalacess } from "@/hooks/context/General";
+//
+export const getServerSideProps = withSessionSsr(async ({ req }) => {
+  const data = getSessionData(req);
+
+  if (data) {
+    if (data?.error == true || data?.status == false) {
+      return {
+        redirect: {
+          destination: "/login",
+        },
+      };
+    } else {
+      const {
+        getComment,
+        catCount,
+        postCount,
+        commentCount,
+        hitCount,
+        quesCount,
+      } = Statichook();
+
+      const getcomment = await getComment();
+
+      return {
+        props: {
+          getcomment,
+        },
+      };
+    }
+  } else {
+    return {
+      redirect: {
+        destination: "/login",
+      },
+    };
+  }
+});
+
+const comment = ({ getcomment }) => {
+  const {
+    id,
+    setId,
+    des,
+    comment,
+    setComment,
+    title,
+    setTitle,
+    setDes,
+    subtitle1,
+    setSubtitle1,
+    subtitle2,
+    setSubtitle2,
+    img1,
+    setImg1,
+    img2,
+    setImg2,
+  } = Generalacess();
   return (
     <>
       <main className="admin">
@@ -21,12 +81,12 @@ const comment = () => {
               </div>
               <div>
                 <div className="table__head--phone">
-                  <h6>phone</h6>
+                  <h6>Email</h6>
                 </div>
               </div>
               <div>
                 <div className="table__head--des">
-                  <h6>description</h6>
+                  <h6>Comment</h6>
                 </div>
               </div>
               <div>
@@ -35,50 +95,16 @@ const comment = () => {
                 </div>
               </div>
             </div>
-
-            <div className="table__body">
-              <div className="">
-                <div className="table__head--phone">
-                  <p>this is the title of the post ..</p>
-                </div>
-              </div>
-              <div>
-                <div className="table__head--phone">
-                  <p>Chiamaka</p>
-                </div>
-              </div>
-              <div>
-                <div className="table__head--phone">
-                  <p>09076176485</p>
-                </div>
-              </div>
-              <div>
-                <div className="table__head--des">
-                  <p>This is the description</p>
-                </div>
-              </div>
-
-              <div className="">
-                <div className="table__head--act">
-                  <div className="table__perform">
-                    <a href="">
-                      <img src="/asset/icons/adminicon/waste.svg" alt="" />
-                    </a>
-                    <a href="" data-toggle="modal" data-target="#exampleModal">
-                      <img src="/asset/icons/adminicon/view.svg" alt="" />
-                    </a>
-                  </div>
-                  {/* <!-- end of the thing --> */}
-                  <a href="">
-                    <img
-                      className="table__menu"
-                      src="/asset/icons/adminicon/menu_1.svg"
-                      alt=""
-                    />
-                  </a>
-                </div>
-              </div>
-            </div>
+            {getcomment.length < 1 ? (
+              <h2 className=" text-center text-info">NO COMMENT AVIALABLE</h2>
+            ) : (
+              getcomment.map((ma) => {
+                return <Combody {...ma} />;
+              })
+            )}
+            {/* <Combody />
+            <Combody />
+            <Combody /> */}
           </div>
         </section>
 
@@ -112,28 +138,19 @@ const comment = () => {
                   tag: <span>extinguisher</span><span>fire</span>
                 </div> --> */}
                   <div className="postdisplay__cat">
-                    Name: <span>fire_extinguisher</span>
+                    Post: <span> {comment.title} </span>
                   </div>
                   <div className="postdisplay__cat">
-                    phone: <span>09076176485</span>
+                    Email: <span>{comment.email}</span>
                   </div>
 
                   <div className="postdisplay__cat">
                     Comments:
-                    <span className="text-white">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Earum ratione eveniet corporis laudantium delectus
-                      assumenda rem voluptatum reiciendis cum, eius ut aperiam
-                      dignissimos maxime consectetur dolore laboriosam explicabo
-                      incidunt temporibus cupiditate magnam aspernatur repellat
-                      necessitatibus! Voluptas error illo numquam, qui quibusdam
-                      esse quos explicabo quam animi rerum doloribus minus
-                      vitae!
-                    </span>
+                    <span className="text-white">{comment.comment}</span>
                   </div>
-                  <div className="postdisplay__cat">
+                  {/* <div className="postdisplay__cat">
                     email: <span>uzoechijerry@gmail.com</span>
-                  </div>
+                  </div> */}
                   {/* <!-- description display --> */}
 
                   {/* <!-- end of description display --> */}

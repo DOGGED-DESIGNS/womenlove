@@ -3,11 +3,11 @@ import React from "react";
 const Footer = () => {
   return (
     <>
-      <footer className="footer main">
+      <footer className=" main footer main">
         <div className="footer__grid">
           <div className="footer__grid--first">
-            <div>
-              <img src="./asset/icons/logowhite.svg" alt="" />
+            <div className="main__nav2--logo mb-3 ">
+              <img src="/asset/icons/logowhite.svg" alt="" />
             </div>
             <p className="footer__grid--p1">
               About women love and relationships
@@ -50,7 +50,7 @@ const Footer = () => {
           <div className="footer__grid2">
             <div>
               <div className="footer__grid2--link">
-                <p className="footer__grid--p1">Links</p>
+                <p className="footer__grid--p1">Categories</p>
                 <a href="#"> Women </a>
                 <a href="#"> Dating </a>
                 <a href="#"> Relationships </a>
@@ -61,6 +61,8 @@ const Footer = () => {
                 <p className="footer__grid--p1">Site links</p>
                 <a href="#"> Privacy </a>
                 <a href="#"> Disclosure</a>
+                <a href="/contact"> Contact</a>
+                <a href="/about"> About</a>
               </div>
             </div>
           </div>

@@ -4,19 +4,45 @@ import Nav from "../comps/Nav/Nav";
 import Footer from "../comps/Footer/Footer";
 import { motion, AnimatePresence } from "framer-motion";
 import Animatez from "@/Animate";
+import Catbutton from "../comps/Catbutton/Catbutton";
+import Statichook from "@/hooks/statichook";
+import category from "./admin/category";
 
-const index = () => {
+export const getServerSideProps = async () => {
+  const { fourRandom, getCategory, getPost } = Statichook();
+
+  const fourrandom = await fourRandom();
+
+  const category = await getCategory();
+
+  const post = await getPost();
+
+  return {
+    props: {
+      fourrandom,
+      category,
+      post,
+    },
+  };
+};
+
+const index = ({ fourrandom, category, post }) => {
   const { gencont, genchild, menu, menuchild } = Animatez();
   return (
     <>
       <main className="main ">
-        <Nav />
+        <Nav post={post} cat={category} />
 
         <header className="header">
-          <h1 className="header__h1">
+          <motion.h1
+            variants={genchild}
+            initial="initial"
+            animate="animate"
+            className="header__h1"
+          >
             Love is more than what <br />
             you feel.
-          </h1>
+          </motion.h1>
         </header>
         {/* <!-- question section --> */}
         <section className="question">
@@ -25,9 +51,24 @@ const index = () => {
             Relationship?
           </h1>
           <p className="question__p">know things about relsationsip</p>
-          <div className="question__grid">
-            <Question />
-          </div>
+          <motion.div
+            variants={gencont}
+            initial={"initial"}
+            whileInView={"animate"}
+            className="question__grid"
+          >
+            {fourrandom.length < 1 ? (
+              <h2> loading.. </h2>
+            ) : (
+              fourrandom.map((rand) => {
+                return (
+                  <motion.div variants={genchild}>
+                    <Question {...rand} />
+                  </motion.div>
+                );
+              })
+            )}
+          </motion.div>
 
           <div className="question__img">
             <img src="./asset/img/img2-8.png" alt="" />
@@ -53,30 +94,17 @@ const index = () => {
           whileInView={"animate"}
           className="confuse__grid"
         >
-          <motion.div variants={genchild}>
-            <a className="confuse__grid--a" href="#">
-              {" "}
-              Dating{" "}
-            </a>
-          </motion.div>
-          <motion.div variants={genchild}>
-            <a className="confuse__grid--a" href="#">
-              {" "}
-              Men{" "}
-            </a>
-          </motion.div>
-          <motion.div variants={genchild}>
-            <a className="confuse__grid--a" href="#">
-              {" "}
-              Relationships{" "}
-            </a>
-          </motion.div>
-          <motion.div variants={genchild}>
-            <a className="confuse__grid--a" href="#">
-              {" "}
-              Women{" "}
-            </a>
-          </motion.div>
+          {category.length < 1 ? (
+            <h2>loading..</h2>
+          ) : (
+            category.map((ca) => {
+              return (
+                <motion.div variants={genchild}>
+                  <Catbutton id={ca.id} />
+                </motion.div>
+              );
+            })
+          )}
         </motion.div>
       </section>
       <Footer />

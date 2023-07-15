@@ -1,10 +1,32 @@
 import React from "react";
+import { withSessionSsr, getSessionData } from "../../pages/api/withsession";
+import { useRouter } from "next/router";
+import axios from "axios";
 
-const Adminnav = () => {
+// export const getServerSideProps = withSessionSsr(async ({ req }) => {
+//   const data = getSessionData(req);
+
+//   // console.log(data);
+
+//   if (data?.error == true || data?.status == false) {
+//     return {
+//       redirect: {
+//         destination: "/login",
+//       },
+//     };
+//   }
+//   return {
+//     props: data ? data : { message: "", error: "", status: "" },
+//   };
+// });
+
+const Adminnav = ({ tata }) => {
+  const router = useRouter();
+
   return (
     <>
       <nav className="admin__nav">
-        <a className="admin__nav--logo" href="#">
+        <a href={"/admin"} className="admin__nav--logo">
           <img src="/asset/icons/testlogo.svg" alt="" />
         </a>
 
@@ -35,9 +57,29 @@ const Adminnav = () => {
             href=""
             className="mx-3 my-2 text-decoration-none admin__nav--quote"
           >
-            <button className="btn btn-outline-dark btn-sm">
-              <i className="text-black mr-1 fa-1x fas fa-sign-out-alt"></i>
-            </button>
+            <form
+              onSubmit={async (e) => {
+                e.preventDefault();
+                try {
+                  await axios.post(
+                    "/api/withsession",
+                    {
+                      message: "logout",
+                    },
+                    {
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                    }
+                  );
+                  router.reload();
+                } catch (error) {}
+              }}
+            >
+              <button type="submit" className="btn btn-outline-dark btn-sm">
+                <i className="text-black mr-1 fa-1x fas fa-sign-out-alt"></i>
+              </button>
+            </form>
             {/* <!-- <img
               className="admin__nav--quoteimg"
               src="./asset/icons/adminicon/quotedark.svg"

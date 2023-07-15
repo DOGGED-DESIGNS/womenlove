@@ -1,7 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const Navhover = () => {
+const Navhover = ({ id, post }) => {
+  const [postz, setPostz] = useState([]);
+
+  useEffect(() => {
+    console.log(post);
+    const filt = post.filter((fi) => {
+      if (fi.id == id) {
+        return fi;
+      }
+    });
+
+    setPostz(filt);
+  }, []);
+
   const [hover, setHover] = useState(false);
 
   return (
@@ -22,11 +35,10 @@ const Navhover = () => {
           onHoverEnd={() => {
             setHover(false);
           }}
-          href="#"
-          className="border"
+          href={`/category/${id}`}
+          className=""
         >
-          {" "}
-          Dating{" "}
+          {id}
         </motion.a>
 
         <AnimatePresence>
@@ -50,15 +62,13 @@ const Navhover = () => {
               }}
               className="navhover"
             >
-              <a href="" className="text-decoration-none">
-                <p>Dating and how to deal with cheating</p>
-              </a>
-              <a href="" className="text-decoration-none">
-                <p>Relationship is what i want</p>
-              </a>
-              <a href="" className="text-decoration-none">
-                <p>Feel free to open up to your partners</p>
-              </a>
+              {postz.map((pa) => {
+                return (
+                  <a href={`/post/${pa.uuid}`} className="text-decoration-none">
+                    <p> {`${pa.title.substring(0.3)}..`} </p>
+                  </a>
+                );
+              })}
             </motion.div>
           )}
         </AnimatePresence>

@@ -1,13 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const Smallhover = () => {
+const Smallhover = ({ id, post }) => {
   const [hover, setHover] = useState(false);
+  const [postz, setPostz] = useState([]);
+
+  useEffect(() => {
+    console.log(post);
+    const filt = post.filter((fi) => {
+      if (fi.id == id) {
+        return fi;
+      }
+    });
+
+    setPostz(filt);
+  }, []);
   return (
     <>
       <div className="navmobile__info">
         <div className="navmobile__question">
-          <p>Relationship</p>
+          <p> {id} </p>
           <motion.i
             animate={
               hover
@@ -51,21 +63,15 @@ const Smallhover = () => {
               }}
               className="navmobile__topic"
             >
-              <a href="#">
-                <div>
-                  <p>Have you confirm he is not faking it</p>
-                </div>
-              </a>
-              <a href="#">
-                <div>
-                  <p>Dont waste your time on a broke guy</p>
-                </div>
-              </a>
-              <a href="">
-                <div>
-                  <p>Do men deserve anything</p>
-                </div>
-              </a>
+              {postz.map((pa) => {
+                return (
+                  <a href={`/post/${pa.uuid}`}>
+                    <div>
+                      <p> {`${pa.title.substring(0.3)}..`} </p>
+                    </div>
+                  </a>
+                );
+              })}
             </motion.div>
           )}
         </AnimatePresence>

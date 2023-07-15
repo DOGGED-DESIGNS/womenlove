@@ -9,11 +9,11 @@ import axios from "axios";
 // <p><span style="background-color: rgb(247, 247, 248); color: rgb(55, 65, 81);">A fire is a devastating event that can occur unexpectedly, posing a significant threat to life, property, and peace of mind. While we hope never to experience a house fire, it is essential to be prepared for such emergencies. One crucial safety measure every household should implement is the presence of a fire extinguisher. In this blog post, we will explore the reasons why having a fire extinguisher at home is of utmost i</span>mportance.</p>
 
 const Statichook = () => {
-  const displayrecent = async () => {
+  const catCount = async () => {
     const data = await axios.post(
-      "http://localhost/sanagosApi/php/process.php",
+      "https://jeffmatthewpatten.com/api2/php/process.php",
       {
-        message: "recent",
+        message: "categorycount",
       },
       {
         headers: {
@@ -26,11 +26,159 @@ const Statichook = () => {
     return data.data;
   };
 
-  const displayposts = async () => {
+  const hitCount = async () => {
     const data = await axios.post(
-      "http://localhost/sanagosApi/php/process.php",
+      "https://jeffmatthewpatten.com/api2/php/process.php",
       {
-        message: "drawpost",
+        message: "hit",
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return data.data;
+  };
+
+  const commentCount = async () => {
+    const data = await axios.post(
+      "https://jeffmatthewpatten.com/api2/php/process.php",
+      {
+        message: "commentcount",
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return data.data;
+  };
+
+  const postCount = async () => {
+    const data = await axios.post(
+      "https://jeffmatthewpatten.com/api2/php/process.php",
+      {
+        message: "postcount",
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return data.data;
+  };
+
+  const quesCount = async () => {
+    const data = await axios.post(
+      "https://jeffmatthewpatten.com/api2/php/process.php",
+      {
+        message: "questioncount",
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return data.data;
+  };
+  const getCategory = async () => {
+    const data = await axios.post(
+      "https://jeffmatthewpatten.com/api2/php/process.php",
+      {
+        message: "getcategory",
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return data.data;
+  };
+  const getComment = async () => {
+    const data = await axios.post(
+      "https://jeffmatthewpatten.com/api2/php/process.php",
+      {
+        message: "getcomment",
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return data.data;
+  };
+  const getPost = async () => {
+    const data = await axios.post(
+      "https://jeffmatthewpatten.com/api2/php/process.php",
+      {
+        message: "getpost",
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return data.data;
+  };
+  const getQuest = async () => {
+    const data = await axios.post(
+      "https://jeffmatthewpatten.com/api2/php/process.php",
+      {
+        message: "getquestion",
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return data.data;
+  };
+  const fourRandom = async () => {
+    const data = await axios.post(
+      "https://jeffmatthewpatten.com/api2/php/process.php",
+      {
+        message: "fourrandom",
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return data.data;
+  };
+  const twoRandom = async (id) => {
+    const data = await axios.post(
+      "https://jeffmatthewpatten.com/api2/php/process.php",
+      {
+        message: "tworandom",
+        id: id,
       },
       {
         headers: {
@@ -44,9 +192,26 @@ const Statichook = () => {
   };
   const singlePost = async (id) => {
     const data = await axios.post(
-      "http://localhost/sanagosApi/php/process.php",
+      "https://jeffmatthewpatten.com/api2/php/process.php",
       {
         message: "singlepost",
+        uuid: id,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return data.data;
+  };
+  const singleCat = async (id) => {
+    const data = await axios.post(
+      "https://jeffmatthewpatten.com/api2/php/process.php",
+      {
+        message: "singlecategory",
         id: id,
       },
       {
@@ -59,59 +224,12 @@ const Statichook = () => {
 
     return data.data;
   };
-  const top = async () => {
+  const singleQuest = async (id) => {
     const data = await axios.post(
-      "http://localhost/sanagosApi/php/process.php",
+      "https://jeffmatthewpatten.com/api2/php/process.php",
       {
-        message: "top",
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
-
-    return data.data;
-  };
-  const trending = async () => {
-    const data = await axios.post(
-      "http://localhost/sanagosApi/php/process.php",
-      {
-        message: "trending",
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
-
-    return data.data;
-  };
-  const tag = async () => {
-    const data = await axios.post(
-      "http://localhost/sanagosApi/php/process.php",
-      {
-        message: "tag",
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
-
-    return data.data;
-  };
-  const categoryEach = async () => {
-    const data = await axios.post(
-      "http://localhost/sanagosApi/php/process.php",
-      {
-        message: "categoryeach",
+        message: "singlequestion",
+        uuid: id,
       },
       {
         headers: {
@@ -124,36 +242,22 @@ const Statichook = () => {
     return data.data;
   };
 
-  const category = async () => {
-    try {
-      const data = await axios.post(
-        "http://localhost/sanagosApi/php/process.php",
-        {
-          message: "drawcategory",
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      return data?.data;
-    } catch (err) {
-      console.log(err?.response?.data);
-      console.log(err);
-    }
-    //
-  };
   return {
-    category,
-    displayposts,
-    displayrecent,
-    categoryEach,
-    trending,
-    top,
-    tag,
+    catCount,
+    hitCount,
+    getPost,
+    getQuest,
+    singleCat,
+    getCategory,
+    twoRandom,
+    commentCount,
+    postCount,
+    quesCount,
+    singleQuest,
+    singleCat,
+    getComment,
     singlePost,
+    fourRandom,
   };
 };
 

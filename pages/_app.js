@@ -2,6 +2,7 @@
 
 import Head from "next/head";
 import "../styles/global.css";
+import General from "@/hooks/context/General";
 
 // import { ThemeProvider } from "@mui/material/styles";
 // import CssBaseline from "@mui/material/CssBaseline";
@@ -31,8 +32,9 @@ function MyApp({ Component, pageProps }) {
         <script src="/final/all.js"></script>
         <script src="/swiper/js/swiper-bundle.min.js"></script>
       </Head>
-
-      <Component {...pageProps} />
+      <General>
+        <Component {...pageProps} />
+      </General>
     </>
   );
 }

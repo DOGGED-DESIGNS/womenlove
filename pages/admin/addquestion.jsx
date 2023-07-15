@@ -5,47 +5,48 @@ import { withSessionSsr, getSessionData } from "../api/withsession";
 import Statichook from "@/hooks/statichook";
 import Editor from "../../comps/Editor";
 import Makepost from "@/hooks/makepost";
+import { Generalacess } from "@/hooks/context/General";
 
 export const getServerSideProps = withSessionSsr(async ({ req }) => {
   const data = getSessionData(req);
 
-  if (data) {
-    if (data?.error == true || data?.status == false) {
-      return {
-        redirect: {
-          destination: "/login",
-        },
-      };
-    } else {
-      const {
-        catCount,
-        postCount,
-        commentCount,
-        hitCount,
-        quesCount,
-        getCategory,
-      } = Statichook();
-
-      const getcategory = await getCategory();
-
-      return {
-        props: {
-          getcategory,
-        },
-      };
-    }
-  } else {
+  if (data?.error == true || data?.status == false) {
     return {
       redirect: {
         destination: "/login",
       },
     };
+  } else {
+    const {
+      catCount,
+      postCount,
+      commentCount,
+      hitCount,
+      quesCount,
+      getCategory,
+    } = Statichook();
+
+    const getcategory = await getCategory();
+
+    return {
+      props: {
+        getcategory,
+      },
+    };
   }
 });
 
-const addpost = ({ getcategory }) => {
-  const { postPost, addpost, setAddpost } = Makepost();
+const addquestion = ({ getcategory }) => {
+  const {
+    postPost,
+    postQuest,
+    addpost,
+    addquestion,
+    setAddquestion,
+    setAddpost,
+  } = Makepost();
 
+  const { loading2 } = Generalacess();
   const clean = (test) => {
     if (test) {
       return test;
@@ -59,18 +60,18 @@ const addpost = ({ getcategory }) => {
     e.preventDefault();
 
     // $id = $_POST['id'];
-    // $title = $_POST['title'];
-    // $des = $_POST['des'];
-    // $img = !empty($_FILES['img1'])? $_FILES['img1'] : "";
+    //     $question = $_POST['question'];
+    //     $des = $_POST['des'];
+    //     $img1 = !empty($_FILES['img1'])? $_FILES['img1'] : "";
     const formData = new FormData();
 
-    formData.append("message", "addpost");
+    formData.append("message", "addquestion");
     formData.append("id", e.target.elements.id.value);
-    formData.append("title", e.target.elements.title.value);
+    formData.append("question", e.target.elements.question.value);
     formData.append("des", value);
     formData.append("img1", clean(e.target.elements.img1?.files[0]));
 
-    await postPost(formData);
+    await postQuest(formData);
   };
   return (
     <>
@@ -78,7 +79,7 @@ const addpost = ({ getcategory }) => {
         <Adminnav />
         <section className="addpost">
           <AnimatePresence>
-            {addpost?.message && (
+            {addquestion?.message && (
               <motion.div
                 initial={{
                   y: "-20%",
@@ -102,14 +103,14 @@ const addpost = ({ getcategory }) => {
                   type: "spring",
                   stiffness: 300,
                 }}
-                className={`mx-3 my-3 alert alert-${addpost?.type} fade show`}
+                className={`mx-3 my-3 alert alert-${addquestion?.type} fade show`}
               >
-                <strong>{addpost?.message}</strong>
+                <strong>{addquestion?.message}</strong>
                 <a></a>
                 <button
                   className="close alert-dismissable mx-3 "
                   onClick={() => {
-                    setAddpost({});
+                    setAddquestion({});
                   }}
                 >
                   {" "}
@@ -131,7 +132,7 @@ const addpost = ({ getcategory }) => {
             </div>
             <div className="addpost__title">
               <label for="">Title</label>
-              <input name="title" className="addpost__title" type="text" />
+              <input name="question" className="addpost__title" type="text" />
             </div>
             <div className="addpost__text">
               <label for=""> description </label>
@@ -151,7 +152,7 @@ const addpost = ({ getcategory }) => {
               </div>
             </div>
 
-            <button type="submit">submit</button>
+            <button type="submit"> {loading2 ? "Loading.." : "Submit"} </button>
           </form>
         </section>
       </main>
@@ -159,4 +160,4 @@ const addpost = ({ getcategory }) => {
   );
 };
 
-export default addpost;
+export default addquestion;

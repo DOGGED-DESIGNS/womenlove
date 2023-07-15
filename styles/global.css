@@ -1,4 +1,5 @@
-@import "https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Open+Sans&family=Raleway&family=Roboto&family=Rubik&display=swap"; /*!
+@import "https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Open+Sans&family=Raleway&family=Roboto&family=Rubik&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,400;1,700;1,900&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"; /*!
  * Bootstrap v4.6.2 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
  * Copyright 2011-2022 Twitter, Inc.
@@ -10112,21 +10113,36 @@ a.text-dark:focus {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   margin: 0px;
-  font-size: "Raleway", sans-serif;
+  font-size: "Lato", sans-serif;
 }
 h1 {
-  font-size: 46px;
+  font-size: 36px;
   color: #036068;
   font-weight: 700;
   max-width: 1000px;
   margin: auto;
   margin-bottom: 20px;
   margin-top: 20px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
 }
 @media (max-width: 780px) {
   h1 {
-    font-size: 32px;
+    font-size: 25px;
+  }
+}
+ul,
+ol {
+  color: #5e5f5f;
+  padding-left: 30px;
+  margin: auto;
+  margin-bottom: 20px;
+  max-width: 790px;
+  font-size: 18px;
+}
+@media (max-width: 500px) {
+  ul,
+  ol {
+    font-size: 15px;
   }
 }
 h2 {
@@ -10136,20 +10152,20 @@ h2 {
   max-width: 790px;
   margin: auto;
   margin-bottom: 10px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
 }
 @media (max-width: 780px) {
   h2 {
-    font-size: 25px;
+    font-size: 22px;
   }
 }
 h3 {
-  font-size: 25px;
+  font-size: 22px;
   color: #036068;
   max-width: 790px;
   margin: auto;
   margin-bottom: 10px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
 }
 @media (max-width: 780px) {
   h3 {
@@ -10234,7 +10250,7 @@ p {
   font-size: 18px;
   margin: auto;
   margin-bottom: 20px;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   max-width: 790px;
 }
 @media (max-width: 500px) {
@@ -10307,7 +10323,7 @@ html {
   font-weight: 500;
   margin-right: auto;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   color: #fff6f4;
   position: relative;
   width: auto;
@@ -10401,7 +10417,7 @@ html {
 .main__nav--call {
   text-decoration: none !important;
   color: #7c6d6c;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   text-decoration: none !important;
   color: #7c6d6c;
   font-weight: 700 !important;
@@ -10425,7 +10441,7 @@ html {
   font-size: 15px;
   font-weight: 700 !important;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   color: #7c6d6c;
   border-radius: 20.26px;
   border: 2px solid red;
@@ -10457,7 +10473,7 @@ html {
   font-size: 15px;
   font-weight: 500;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   color: #7c6d6c;
   position: relative;
   text-decoration: none !important;
@@ -10513,7 +10529,7 @@ html {
   transition: all 0.3s ease-in-out;
   color: #fff6f4;
   font-weight: 600;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   margin: 0px;
   padding: 0px;
 }
@@ -10580,7 +10596,7 @@ html {
     overflow: auto;
     display: block;
     width: 290px;
-    background: #036068;
+    background: #bebebe;
     padding-bottom: 25px;
     position: fixed !important;
     top: 10px;
@@ -10607,7 +10623,7 @@ html {
     align-items: center;
     margin-bottom: 10px;
     top: 0px;
-    position: fixed !important;
+    position: sticky;
   }
   .navmobile__search > a > i {
     display: block;
@@ -10656,8 +10672,8 @@ html {
     padding: 0px;
     font-weight: 700;
     font-size: 18px;
-    color: #036068;
-    font-family: "Roboto", sans-serif;
+    color: #ee2434;
+    font-family: "Lora", serif;
   }
   .navmobile__info {
     background: #036068;
@@ -10672,7 +10688,7 @@ html {
     cursor: pointer;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
-    padding: 6px 7px;
+    padding: 6px 6px 7px 20px;
   }
   .navmobile__topic > a > div:hover {
     background: #036068;
@@ -10684,7 +10700,7 @@ html {
     color: #036068;
     margin: 0px;
     text-transform: capitalize;
-    font-weight: 600;
+    font-family: "Lora", serif;
     padding: 0px;
   }
 }
@@ -10811,8 +10827,14 @@ html {
   text-transform: capitalize;
   line-height: 56px;
   position: relative;
+  font-size: 46px;
   margin-top: 30px;
   margin-left: 30px;
+}
+@media (max-width: 780px) {
+  .header__h1 {
+    font-size: 32px;
+  }
 }
 .header__h1::after {
   content: "";
@@ -11436,35 +11458,35 @@ html {
 .request__email::-webkit-input-placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
 .request__email::-moz-placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
 .request__email:-ms-input-placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
 .request__email::-ms-input-placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
 .request__email::placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
@@ -11516,35 +11538,35 @@ html {
 .request__select::-webkit-input-placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
 .request__select::-moz-placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
 .request__select:-ms-input-placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
 .request__select::-ms-input-placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
 .request__select::placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
@@ -11611,35 +11633,35 @@ html {
 .request__textarea::-webkit-input-placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
 .request__textarea::-moz-placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
 .request__textarea:-ms-input-placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
 .request__textarea::-ms-input-placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
 .request__textarea::placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
@@ -11686,35 +11708,35 @@ html {
 .request__name::-webkit-input-placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
 .request__name::-moz-placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
 .request__name:-ms-input-placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
 .request__name::-ms-input-placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
 .request__name::placeholder {
   color: #9d9d9d;
   text-transform: capitalize;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   font-size: 18px;
 }
@@ -12011,7 +12033,7 @@ html {
   color: #7c6d6c;
   color: red;
   font-weight: 600;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
 }
 .admin__nav--info2:hover {
   color: unset;
@@ -12033,7 +12055,7 @@ html {
   color: #7c6d6c;
   color: red;
   font-weight: 600;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
 }
 .admin__nav--info1:hover {
   color: unset;
@@ -12046,7 +12068,7 @@ html {
 }
 .admin__nav--input > input {
   margin-left: 29px;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   margin-right: 10px;
   border: rgba(0, 0, 0, 0);
   background: rgba(0, 0, 0, 0);
@@ -12054,31 +12076,31 @@ html {
   border-bottom: 1px solid #000;
 }
 .admin__nav--input > input::-webkit-input-placeholder {
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   text-transform: capitalize;
   font-size: 18px;
 }
 .admin__nav--input > input::-moz-placeholder {
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   text-transform: capitalize;
   font-size: 18px;
 }
 .admin__nav--input > input:-ms-input-placeholder {
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   text-transform: capitalize;
   font-size: 18px;
 }
 .admin__nav--input > input::-ms-input-placeholder {
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   text-transform: capitalize;
   font-size: 18px;
 }
 .admin__nav--input > input::placeholder {
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 600;
   text-transform: capitalize;
   font-size: 18px;
@@ -12189,7 +12211,7 @@ html {
 }
 .dash__display > p {
   font-size: 18px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   font-weight: 500;
 }
 .dash__display > h4 {
@@ -12355,7 +12377,7 @@ html {
   background: #e8e8e8;
   border: rgba(0, 0, 0, 0);
   height: 40px;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lato", sans-serif;
 }
 .labelz,
 .addpost__text > label,
@@ -12380,7 +12402,7 @@ html {
   background: #036068;
   border: rgba(0, 0, 0, 0);
   font-weight: 600;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   font-size: 15px;
   margin-top: 30px;
   display: block;
@@ -12470,7 +12492,7 @@ html {
   border-radius: 20px;
 }
 .postdisplay__tag {
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   font-size: 15px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -12479,7 +12501,7 @@ html {
   text-transform: capitalize;
 }
 .postdisplay__tag > span {
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   border: 2px solid #bfa7a2;
   margin-right: 5px;
   margin-left: 4px;
@@ -12492,14 +12514,14 @@ html {
 .postdisplay__cat {
   margin-top: 20px;
   margin-bottom: 20px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   font-size: 18px;
   color: #bfa7a2;
   font-weight: 600;
   text-transform: capitalize;
 }
 .postdisplay__cat > span {
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   font-size: 15px;
   font-weight: 500;
   text-transform: capitalize;
@@ -12510,7 +12532,7 @@ html {
   color: #fff6f4;
   font-size: 22px;
   text-transform: capitalize;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   font-weight: 600;
 }
 .postdisplay__des1text {
@@ -12562,7 +12584,7 @@ html {
 .main__nav--links > a {
   text-decoration: none !important;
   color: #7c6d6c;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   text-transform: capitalize;
   font-size: 18px;
   font-weight: 500;
@@ -12664,7 +12686,7 @@ html {
   color: #7c6d6c;
   padding: 5px;
   background: #7c6d6c;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   font-size: 12px;
   font-weight: 600;
   position: absolute;
@@ -12752,7 +12774,7 @@ html {
   -webkit-transition: background 0.5s ease-in-out;
   transition: background 0.5s ease-in-out;
   font-size: 18px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   color: #7c6d6c;
   text-transform: capitalize;
 }
@@ -13440,6 +13462,7 @@ html {
   color: #ee2434;
 }
 .blogfooter {
+  border: 1px solid orange;
   margin-top: 50px;
   background: #7c6d6c;
   padding-top: 30px;
@@ -13449,7 +13472,7 @@ html {
 }
 .blogfooter__copy {
   margin-top: 30px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   font-size: 15px;
   color: #fff6f4;
   padding-left: 10px;
@@ -13502,7 +13525,7 @@ html {
   font-weight: 700;
   text-transform: capitalize;
   color: #bfa7a2;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
 }
 @media (max-width: 500px) {
   .blogfooter__grid--link > h4 {
@@ -13541,7 +13564,7 @@ html {
   background: #036068;
   border: rgba(0, 0, 0, 0);
   font-weight: 600;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   font-size: 15px;
   margin-top: 30px;
   display: block;
@@ -13743,7 +13766,7 @@ html {
   color: #bfa7a2;
 }
 .specialspan {
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
 }
 .blogsmall {
   padding: 15px;
@@ -13825,35 +13848,35 @@ html {
 }
 .blogsmall__input > input::-webkit-input-placeholder {
   font-size: 18px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   font-weight: 700;
   text-transform: capitalize;
   color: #9d9d9d;
 }
 .blogsmall__input > input::-moz-placeholder {
   font-size: 18px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   font-weight: 700;
   text-transform: capitalize;
   color: #9d9d9d;
 }
 .blogsmall__input > input:-ms-input-placeholder {
   font-size: 18px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   font-weight: 700;
   text-transform: capitalize;
   color: #9d9d9d;
 }
 .blogsmall__input > input::-ms-input-placeholder {
   font-size: 18px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   font-weight: 700;
   text-transform: capitalize;
   color: #9d9d9d;
 }
 .blogsmall__input > input::placeholder {
   font-size: 18px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   font-weight: 700;
   text-transform: capitalize;
   color: #9d9d9d;
@@ -13991,7 +14014,7 @@ html {
   background: #036068;
   border: rgba(0, 0, 0, 0);
   font-weight: 600;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   font-size: 15px;
   margin-top: 30px;
   display: block;
@@ -14038,10 +14061,10 @@ html {
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: #7c6d6c;
+  background: #036068;
 }
 .contact__sociallinks > span > a > i {
-  color: #bfa7a2;
+  color: #fff6f4;
   font-size: 15px;
 }
 .nextz__img1 {
@@ -14334,7 +14357,7 @@ html {
   background: #036068;
   border: rgba(0, 0, 0, 0);
   font-weight: 600;
-  font-family: "Roboto", sans-serif;
+  font-family: "Lora", serif;
   font-size: 15px;
   margin-top: 30px;
   display: block;
@@ -14461,6 +14484,11 @@ html {
   color: #fff6f4;
   max-width: 200px;
 }
+@media (max-width: 780px) {
+  .question__cont--h2 {
+    font-size: 22px;
+  }
+}
 .question__cont--img {
   width: 280px;
   top: -5%;
@@ -14499,7 +14527,7 @@ html {
 }
 @media (max-width: 500px) {
   .question__h1 {
-    font-size: 32px;
+    font-size: 25px;
   }
 }
 .question__p {
@@ -14732,9 +14760,8 @@ html {
 }
 .answer__h1 {
   font-weight: 700;
-  margin-bottom: 40px;
+  margin-bottom: 26px;
   text-transform: capitalize;
-  font-size: 46px;
   position: relative;
 }
 .answer__h1::after {
@@ -14743,7 +14770,7 @@ html {
   width: 60px;
   height: 3px;
   background: #ee2434;
-  top: -40px;
+  top: -20px;
   left: 0px;
 }
 .answer__div {
@@ -14756,7 +14783,7 @@ html {
   display: flex;
   width: 100px;
   margin-bottom: 100px;
-  margin-left: 120px;
+  margin-left: 70px;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
