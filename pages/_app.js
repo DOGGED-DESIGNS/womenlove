@@ -18,16 +18,20 @@ function MyApp({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           name="description"
-          content="women love and relationship is a blog that guides you on your journey. we provide young adult women and older women information they need to achieve a long and healthy relationship"
+          content="womenloveandrelationship is a blog that guides you on your <b>journey</b> . we provide young adult women and older women information they need to achieve a long and healthy relationship"
         />
         <meta name="robots" content="index" />
-        <meta name="keywords" content="love, relationship happiness" />
+        <meta
+          name="keywords"
+          content="love, relationships happiness, womenloveandrelationships, women, love, love, relationships, friendships, dating, happiness, relationship blog, relationshipblog"
+        />
         <link rel="stylesheet" href="/final/fontawesome.min.css" />
         <link rel="stylesheet" href="/swiper/owl.carousel.min.css" />
         <link rel="stylesheet" href="/swiper/owl.theme.default.css" />
         <link rel="stylesheet" href="/swiper/css/swiper-bundle.min.css" />
+        <link rel="icon" href="/favicon.svg" />
         {/* <link rel="stylesheet" href="./final/index.min.css" /> */}
-        <title>WomenLoveAndRelationships</title>
+        <title>Women, Love and Relationships</title>
 
         <script src="/jquery.3.4.1.js?cd=123"></script>
         <script src="/swiper/owl.carousel.min.js"></script>
