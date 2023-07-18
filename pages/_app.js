@@ -1,14 +1,23 @@
 // pages/_app.js
 
 import Head from "next/head";
+import ReactGA from "react-ga";
+import { useEffect } from "react";
 import "../styles/global.css";
 import General from "@/hooks/context/General";
+import Script from "next/script";
 
 // import { ThemeProvider } from "@mui/material/styles";
 // import CssBaseline from "@mui/material/CssBaseline";
 // import theme from "../src/theme";
 
 function MyApp({ Component, pageProps }) {
+  // useEffect(() => {
+  //   // Initialize Google Analytics
+  //   ReactGA.initialize("G-WEG6QER73H");
+  //   ReactGA.pageview(window.location.pathname + window.location.search);
+  // }, []);
+
   return (
     <>
       <Head>
@@ -33,12 +42,32 @@ function MyApp({ Component, pageProps }) {
         {/* <link rel="stylesheet" href="./final/index.min.css" /> */}
         <title>Women, Love and Relationships</title>
 
+        {/* <script strategy="afterInteractive">
+         {" "}
+        </script> */}
         <script src="/jquery.3.4.1.js?cd=123"></script>
         <script src="/swiper/owl.carousel.min.js"></script>
         <script src="/final/all.js"></script>
         <script src="/swiper/js/swiper-bundle.min.js"></script>
       </Head>
       <General>
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-WEG6QER73H"
+        ></Script>
+        <Script strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date());
+          gtag('consent','default', {'analytics_storage': 'granted'});
+           gtag('config', 'G-WEG6QER73H',
+           {
+               page_path: window.location.pathname,
+              }
+           );
+
+         
+          `}
+        </Script>
         <Component {...pageProps} />
       </General>
     </>
