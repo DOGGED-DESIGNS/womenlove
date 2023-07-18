@@ -29,7 +29,7 @@ function MyApp({ Component, pageProps }) {
         <link rel="stylesheet" href="/swiper/owl.carousel.min.css" />
         <link rel="stylesheet" href="/swiper/owl.theme.default.css" />
         <link rel="stylesheet" href="/swiper/css/swiper-bundle.min.css" />
-        <link rel="icon" href="/favicon.svg" />
+        <link rel="icon" href="/favicon.png" />
         {/* <link rel="stylesheet" href="./final/index.min.css" /> */}
         <title>Women, Love and Relationships</title>
 
