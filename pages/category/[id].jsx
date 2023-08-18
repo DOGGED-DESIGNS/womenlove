@@ -54,7 +54,10 @@ const index = ({ post, singlecat, category, tworandom, categorypost }) => {
             </div>
             <div className="answer__grid--two">
               <div className="answer__grid--img answer__grid--imgmodify">
-                <img src={`http://localhost/women/${singlecat.img1}`} alt="" />
+                <img
+                  src={`https://jeffmatthewpatten.com/api1/${singlecat.img1}`}
+                  alt=""
+                />
               </div>
             </div>
           </div>
@@ -65,7 +68,7 @@ const index = ({ post, singlecat, category, tworandom, categorypost }) => {
                   <img
                     src={
                       singlecat.img2
-                        ? `http://localhost/women/${singlecat.img2}`
+                        ? `https://jeffmatthewpatten.com/api1/${singlecat.img2}`
                         : `/asset/icons/love.svg`
                     }
                     alt=""
