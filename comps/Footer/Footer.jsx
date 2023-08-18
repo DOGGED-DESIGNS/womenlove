@@ -23,26 +23,28 @@ const Footer = () => {
             <p className="footer__grid--p1">Follow us</p>
 
             <div className="footer__grid--social">
-              <a href="">
-                <i className="fab fa-pinterest"></i>
-              </a>
-              <a href="">
+              <a href="https://twitter.com/Dogged_Tech" target="_blank">
                 <i className="fab fa-twitter"></i>
               </a>
-              <a href="">
+              <a
+                href="https://web.facebook.com/profile.php?id=100083415037542"
+                target="_blank"
+              >
                 <i className="fab fa-facebook"></i>
               </a>
             </div>
             <div className="footer__grid--social">
-              <a href="">
+              <a
+                href="https://www.instagram.com/dogged_designs/"
+                target="_blank"
+              >
                 <i className="fab fa-instagram"></i>
               </a>
-              <a href="">
+              <a
+                href="https://www.linkedin.com/in/uzoechi-jerry-16b872240/"
+                target="_blank"
+              >
                 <i className="fab fa-linkedin-in"></i>
-              </a>
-
-              <a href="">
-                <i className="fab fa-github"></i>
               </a>
             </div>
           </div>
@@ -69,7 +71,11 @@ const Footer = () => {
         </div>
 
         <p className="text-center text-white">
-          <a href="" className="p text-white">
+          <a
+            href="https://web.facebook.com/profile.php?id=100083415037542"
+            className="p text-white"
+            target="_blank"
+          >
             {" "}
             created by dogged{" "}
           </a>

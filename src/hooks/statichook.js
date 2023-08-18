@@ -11,7 +11,7 @@ import axios from "axios";
 const Statichook = () => {
   const catCount = async () => {
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "categorycount",
       },
@@ -28,9 +28,25 @@ const Statichook = () => {
 
   const hitCount = async () => {
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "hit",
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return data.data;
+  };
+  const hitUpdate = async () => {
+    const data = await axios.post(
+      "https://jeffmatthewpatten.com/api1/php/process.php",
+      {
+        message: "updatehit",
       },
       {
         headers: {
@@ -45,7 +61,7 @@ const Statichook = () => {
 
   const commentCount = async () => {
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "commentcount",
       },
@@ -62,7 +78,7 @@ const Statichook = () => {
 
   const postCount = async () => {
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "postcount",
       },
@@ -79,7 +95,7 @@ const Statichook = () => {
 
   const quesCount = async () => {
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "questioncount",
       },
@@ -95,7 +111,7 @@ const Statichook = () => {
   };
   const getCategory = async () => {
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "getcategory",
       },
@@ -111,7 +127,7 @@ const Statichook = () => {
   };
   const getComment = async () => {
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "getcomment",
       },
@@ -125,9 +141,26 @@ const Statichook = () => {
 
     return data.data;
   };
+  const categoryPost = async (id) => {
+    const data = await axios.post(
+      "https://jeffmatthewpatten.com/api1/php/process.php",
+      {
+        message: "categorypost",
+        id: id,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    return data.data;
+  };
   const getPost = async () => {
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "getpost",
       },
@@ -143,7 +176,7 @@ const Statichook = () => {
   };
   const getQuest = async () => {
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "getquestion",
       },
@@ -159,7 +192,7 @@ const Statichook = () => {
   };
   const fourRandom = async () => {
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "fourrandom",
       },
@@ -175,7 +208,7 @@ const Statichook = () => {
   };
   const twoRandom = async (id) => {
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "tworandom",
         id: id,
@@ -192,7 +225,7 @@ const Statichook = () => {
   };
   const singlePost = async (id) => {
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "singlepost",
         uuid: id,
@@ -209,7 +242,7 @@ const Statichook = () => {
   };
   const singleCat = async (id) => {
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "singlecategory",
         id: id,
@@ -226,7 +259,7 @@ const Statichook = () => {
   };
   const singleQuest = async (id) => {
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "singlequestion",
         uuid: id,
@@ -246,10 +279,12 @@ const Statichook = () => {
     catCount,
     hitCount,
     getPost,
+    categoryPost,
     getQuest,
     singleCat,
     getCategory,
     twoRandom,
+    hitUpdate,
     commentCount,
     postCount,
     quesCount,

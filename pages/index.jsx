@@ -9,11 +9,12 @@ import Statichook from "@/hooks/statichook";
 import category from "./admin/category";
 
 export const getServerSideProps = async () => {
-  const { fourRandom, getCategory, getPost } = Statichook();
+  const { fourRandom, getCategory, getPost, hitUpdate } = Statichook();
 
   const fourrandom = await fourRandom();
 
   const category = await getCategory();
+  const updatehit = await hitUpdate();
 
   const post = await getPost();
 
@@ -50,7 +51,10 @@ const index = ({ fourrandom, category, post }) => {
             Have a question about your <br />
             Relationship?
           </h1>
-          <p className="question__p">know things about relsationsip</p>
+          <p className="question__p">
+            {" "}
+            💘 Doubt in Love: Navigating Questions About Relationships
+          </p>
           <motion.div
             variants={gencont}
             initial={"initial"}
@@ -80,8 +84,10 @@ const index = ({ fourrandom, category, post }) => {
       </main>
       <section className="confuse main">
         <div className="confuse__cont">
-          <div className="confuse__cont--img">
-            <img src="./asset/img/img2-8.png" alt="" />
+          <div>
+            <div className="extra">
+              <img src="/asset/icons/love.svg" alt="" />
+            </div>
           </div>
           <h2 className="confuse__cont--h2">
             Love is confusing. <br />

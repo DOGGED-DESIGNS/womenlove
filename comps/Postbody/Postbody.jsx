@@ -22,7 +22,7 @@ const Postbody = ({ time, title, id, img, uuid }) => {
         <div>
           <div className="table__head--des d-flex align-items-center">
             <div className="desimg">
-              <img src={`https://jeffmatthewpatten.com/api2${img}`} alt="" />
+              <img src={`https://jeffmatthewpatten.com/api1/${img}`} alt="" />
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 
 const Combody = ({ id, uuid, title, comment, email, name }) => {
   const [toggle, setToggle] = useState(false);
-  const { deleteComment } = Makepost();
+  const { deleteComment, singleComment } = Makepost();
   const router = useRouter();
   return (
     <>
@@ -67,7 +67,13 @@ const Combody = ({ id, uuid, title, comment, email, name }) => {
                   >
                     <img src="/asset/icons/adminicon/waste.svg" alt="" />
                   </a>
-                  <a href="" data-toggle="modal" data-target="#exampleModal">
+                  <a
+                    onClick={async () => {
+                      await singleComment(id);
+                    }}
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                  >
                     <img src="/asset/icons/adminicon/view.svg" alt="" />
                   </a>
                 </motion.div>

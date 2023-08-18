@@ -20,7 +20,7 @@ const Question = ({ question, img, uuid }) => {
       >
         <div className="question__cont">
           <div className="question__cont--img">
-            <img src={`https://jeffmatthewpatten.com/api2/${img}`} alt="" />
+            <img src={`https://jeffmatthewpatten.com/api1/${img}`} alt="" />
           </div>
 
           <h2 className="question__cont--h2"> {question} </h2>

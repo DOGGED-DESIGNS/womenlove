@@ -1,19 +1,25 @@
 import React from "react";
 import Nav from "../../comps/Nav/Nav";
 import Footer from "../../comps/Footer/Footer";
-import Statichook from "@/hooks/statichook";
 import Question from "../../comps/Question/Question";
-import { motion } from "framer-motion";
 import Animatez from "@/Animate";
+import { useEffect, useState } from "react";
+import Statichook from "@/hooks/statichook";
+import { motion, AnimatePresence } from "framer-motion";
+import Makepost from "@/hooks/makepost";
+import { useRouter } from "next/router";
+import Eachcomment from "../../comps/Eachcomment/Eachcomment";
 
 export const getServerSideProps = async ({ params, query }) => {
-  const { twoRandom, getCategory, singlePost, getPost } = Statichook();
+  const { twoRandom, getCategory, singlePost, getPost, getComment } =
+    Statichook();
 
   const { id } = query;
   const singlepost = await singlePost(id);
 
   if (singlepost) {
     const category = await getCategory();
+    const getcomment = await getComment();
 
     const tworandom = await twoRandom(singlepost.id);
 
@@ -22,6 +28,7 @@ export const getServerSideProps = async ({ params, query }) => {
     return {
       props: {
         tworandom,
+        getcomment,
         category,
         post,
         singlepost,
@@ -34,8 +41,35 @@ export const getServerSideProps = async ({ params, query }) => {
   }
 };
 
-const index = ({ post, singlepost, category, tworandom }) => {
+const index = ({ post, singlepost, category, getcomment, tworandom }) => {
   const { gencont, genchild, menu, menuchild } = Animatez();
+  const { addComment } = Makepost();
+  const router = useRouter();
+  const [error, setError] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (
+      e.target.elements.comment.value == "" ||
+      e.target.elements.email.value == "" ||
+      e.target.elements.name.value == ""
+    ) {
+      setError(true);
+    } else {
+      const form = new FormData();
+
+      form.append("message", "addcomment");
+      form.append("uuid", singlepost.uuid);
+      form.append("comment", e.target.elements.comment.value);
+      form.append("email", e.target.elements.email.value);
+      form.append("name", e.target.elements.name.value);
+      form.append("website", e.target.elements.website.value);
+
+      await addComment(form);
+
+      router.reload();
+    }
+  };
 
   return (
     <>
@@ -52,7 +86,7 @@ const index = ({ post, singlepost, category, tworandom }) => {
             <div className="answer__grid--two">
               <div className="answer__grid--img">
                 <img
-                  src={`https://jeffmatthewpatten.com/api2/${singlepost.img}`}
+                  src={`https://jeffmatthewpatten.com/api1/${singlepost.img}`}
                   alt=""
                 />
               </div>
@@ -63,84 +97,115 @@ const index = ({ post, singlepost, category, tworandom }) => {
             className="answer__des"
             dangerouslySetInnerHTML={{ __html: singlepost.des }}
           ></div>
-          <div className="answer__comment">
-            <h2 className="answer__comment--h2">comments</h2>
+          <div className=" answer__comment--div">
+            <div className="answer__comment">
+              <h2 className="answer__comment--h2">comments</h2>
 
-            <div className="answer__comment--div">
-              <div className="answer__comment--flex">
-                <div className="answer__comment--img">
-                  <img src="/asset/icons/Profile.svg" alt="" />
-                </div>
-
-                <p className="answer__comment--name">Amaka</p>
-              </div>
-              <i>
-                <p className="answer__comment--message">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Quibusdam, unde!
-                </p>
-              </i>
-            </div>
-            <div className="answer__comment--div">
-              <div className="answer__comment--flex">
-                <div className="answer__comment--img">
-                  <img src="/asset/icons/Profile.svg" alt="" />
-                </div>
-
-                <p className="answer__comment--name">Amaka</p>
-              </div>
-              <i>
-                <p className="answer__comment--message">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Quibusdam, unde!
-                </p>
-              </i>
-            </div>
-            <div className="answer__comment--div">
-              <div className="answer__comment--flex">
-                <div className="answer__comment--img">
-                  <img src="/asset/icons/Profile.svg" alt="" />
-                </div>
-
-                <p className="answer__comment--name">Amaka</p>
-              </div>
-              <i>
-                <p className="answer__comment--message">
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Quibusdam, unde!
-                </p>
-              </i>
+              {getcomment.map((com) => {
+                return <Eachcomment {...com} />;
+              })}
             </div>
           </div>
 
           <div className="mt-5 single__comment single__comment--modify">
-            <h2 className="single__comment--modify--h2">Leave a comment</h2>
+            <h5 className="headtext">Leave a reply</h5>
             <p className="p">
               your email address will not be published the required fields are
               marked
               <span className="text-primary specialspan"> *</span>
             </p>
-            <form action="">
+
+            <AnimatePresence>
+              {error && (
+                <motion.div
+                  initial={{
+                    opacity: 0,
+                    y: "-20px",
+                  }}
+                  animate={{
+                    y: 0,
+                    opacity: 1,
+                    transition: {
+                      type: "spring",
+                      stiffness: 500,
+                    },
+                  }}
+                  exit={{
+                    opacity: 0,
+                    y: "-30px",
+                    transition: {
+                      type: "spring",
+                      // stiffness: 500,
+                    },
+                  }}
+                  className={`alert show  alert-dismissible alert-danger fade`}
+                >
+                  <strong> kindly fill the neccessary form fields </strong>
+
+                  <button
+                    onClick={() => {
+                      setError(false);
+                    }}
+                    className="close"
+                  >
+                    {" "}
+                    &times;{" "}
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <form onSubmit={handleSubmit} action="">
               <textarea
                 placeholder="comment *"
-                name=""
+                name="comment"
                 id=""
                 cols="30"
+                maxLength={200}
                 rows="10"
               ></textarea>
 
               <div className="single__comment--flex">
-                <input placeholder="name *" type="text" />
-                <input placeholder="email *" type="email" />
-                <input placeholder="website" type="text" />
+                <input
+                  placeholder="name *"
+                  maxLength={20}
+                  name="name"
+                  type="text"
+                />
+                <input
+                  placeholder="email *"
+                  maxLength={20}
+                  name="email"
+                  type="email"
+                />
+                <input
+                  placeholder="website"
+                  maxLength={20}
+                  name="website"
+                  type="text"
+                />
               </div>
 
-              <small className="text-secondary">
-                <input className="mr-2" type="checkbox" /> save my name, email
-                and pasword on this browser for the next time i comment
-              </small>
+              {/* <small className="text-secondary">
+                    <input className="mr-2" type="checkbox" /> save my name,
+                    email and pasword on this browser for the next time i
+                    comment
+                  </small> */}
 
-              <button className="submit">Post Comments</button>
+              <motion.button
+                whileHover={{
+                  origins: 0,
+                  scale: 0.8,
+                  boxShadow: "0px 0px 7px white",
+                }}
+                type="submit"
+                whileTap={{
+                  originx: 0,
+                  scale: 1.1,
+                }}
+                className="submit"
+              >
+                Post Comments
+              </motion.button>
             </form>
           </div>
         </section>

@@ -46,13 +46,19 @@ const index = ({ tworandom, category, singlequest, post }) => {
 
           <div className="answer__div">
             <div className="answer__social">
-              <a href="">
+              <a href="https://twitter.com/Dogged_Tech" target="_blank">
                 <i className="fab fa-twitter"></i>
               </a>
-              <a href="">
+              <a
+                href="https://www.instagram.com/dogged_designs/"
+                target="_blank"
+              >
                 <i className="fab fa-instagram"></i>
               </a>
-              <a href="">
+              <a
+                href="https://web.facebook.com/profile.php?id=100083415037542"
+                target="_blank"
+              >
                 <i className="fab fa-facebook-f"></i>
               </a>
             </div>

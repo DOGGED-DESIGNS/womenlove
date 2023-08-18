@@ -43,7 +43,7 @@ const Makepost = () => {
 
   const postCat = async (formdata) => {
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       formdata,
       {
         headers: {
@@ -58,7 +58,7 @@ const Makepost = () => {
 
   const postPost = async (formdata) => {
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       formdata,
       {
         headers: {
@@ -74,7 +74,7 @@ const Makepost = () => {
   const postQuest = async (formdata) => {
     setLoading2(true);
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       formdata,
       {
         headers: {
@@ -91,7 +91,7 @@ const Makepost = () => {
 
   const editQuest = async (formdata) => {
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       formdata,
       {
         headers: {
@@ -106,7 +106,7 @@ const Makepost = () => {
   const editPost = async (formdata) => {
     setLoading2(true);
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       formdata,
       {
         headers: {
@@ -122,7 +122,7 @@ const Makepost = () => {
   const editCat = async (formdata) => {
     setLoading(true);
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       formdata,
       {
         headers: {
@@ -137,7 +137,7 @@ const Makepost = () => {
   const deleteCat = async (id) => {
     setLoading(true);
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "deletecategory",
         id: id,
@@ -158,7 +158,7 @@ const Makepost = () => {
   const deleteComment = async (id) => {
     setLoading(true);
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "deletecomment",
         id: id,
@@ -175,11 +175,28 @@ const Makepost = () => {
 
     setDeletecategory(data.data);
   };
+  const addComment = async (form) => {
+    setLoading(true);
+    const data = await axios.post(
+      "https://jeffmatthewpatten.com/api1/php/process.php",
+      form,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
+        },
+      }
+    );
+
+    setLoading(false);
+
+    setDeletecategory(data.data);
+  };
 
   const deletePost = async (id) => {
     setLoading(true);
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "deletepost",
         uuid: id,
@@ -197,7 +214,7 @@ const Makepost = () => {
   const deleteQuest = async (id) => {
     setLoading(true);
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "deletequestion",
         uuid: id,
@@ -215,7 +232,7 @@ const Makepost = () => {
   const singlePost = async (id) => {
     setLoading(true);
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "singlepost",
         uuid: id,
@@ -233,7 +250,7 @@ const Makepost = () => {
   const singleQuest = async (id) => {
     setLoading(true);
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "singlequestion",
         uuid: id,
@@ -252,7 +269,7 @@ const Makepost = () => {
   const singleComment = async (id) => {
     setLoading(true);
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "singlecomment",
         id: id,
@@ -271,7 +288,7 @@ const Makepost = () => {
   const singleCat = async (id) => {
     setLoading(true);
     const data = await axios.post(
-      "https://jeffmatthewpatten.com/api2/php/process.php",
+      "https://jeffmatthewpatten.com/api1/php/process.php",
       {
         message: "singlecategory",
         id: id,
@@ -301,7 +318,9 @@ const Makepost = () => {
     addpost,
     setAddpost,
     singlecategory,
+    addComment,
     deleteComment,
+    singleComment,
     setUpdateques,
     singleCat,
     addpost,
